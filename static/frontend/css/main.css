@@ -1,0 +1,501 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #181619;
+}
+
+.margin0{
+    margin: 0 !important;
+}
+
+.padding0{
+    padding: 0 !important;
+}
+
+.padding-TB-20{
+    padding: 20px 0;
+}
+
+.padding-TB-30{
+    padding: 30px 0;
+}
+
+.padding-TB-40{
+    padding: 40px 0;
+}
+
+.padding-TB-50{
+    padding: 50px 0;
+}
+
+.padding-TB-75{
+    padding: 75px 0;
+}
+
+.padding-TB-150{
+    padding: 150px 0;
+}
+
+.paddingT-50{
+    padding-top: 50px;
+}
+
+.paddingTB-100{
+    padding-top: 100px;
+}
+
+.bgImage{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.formbg {
+    background-image: url(../img/bg-image-1.png);    
+}
+
+.grayhomecar{
+    background-image: url(../img/bg-image-2.png);    
+}
+
+.blackfullsidecar{
+    background-image: url(../img/bg-image-3.png);    
+}
+
+.whiteText{
+    color: #fff !important;
+}
+
+
+img{
+    width: auto;
+}
+
+
+ul{
+    padding: 0;
+    margin: 0;
+}
+
+ul li{
+    display: inline-block;
+    list-style-type: none;
+}
+
+.bg-black{
+    background-color: #212121;
+    color: #fff;
+}
+
+.bg-light-gray{
+    background-color:#f7f6f6;
+}
+
+.bg-red{
+    background-color: #c71717;
+}
+
+.btn{
+    border-radius: 0;    
+}
+.btn-primary{
+    background-color: #c71717;
+    border-color: #c71717;
+}
+
+.btn-primary:hover{
+    background-color: #212121;
+    border-color: #212121;
+}
+
+
+.top-head{
+    padding: 12px;
+}
+
+.top-head ul li{
+    margin: 0 15px;
+}
+.top-head ul li a{
+    color: #a7a7a7;
+    font-size: 14px;
+}
+
+.menu .menuList li a{
+    color: #212121;
+}
+
+.menuWrap{
+    padding: 7px 0;
+    box-shadow: 0px 3px 5px 0px #cecece;
+}
+
+.menuWrap .navbar-brand img{
+    width: 75%;
+}
+.slide{
+    position: relative;
+}
+
+.slide img{
+    width: 100%;
+}
+.slide .textWrap{
+    position: absolute;
+    top: 20%;
+    right: auto;
+    left: 50%;
+    bottom: auto;
+    transform: translate(-50%, -20%);
+    text-align: center;
+    color: #fff;
+}
+
+.slide .textWrap h1{
+    font-size: 61px;
+}
+
+.slide .textWrap h2{
+    font-size: 48px;
+}
+
+.slide .btn-primary{
+    padding: 7px 25px;
+    margin-top: 10px;
+}
+
+.threeBoxWrap{
+    margin-top: -80px;
+}
+
+.threeBoxWrap .boxWrap {
+    display: table;
+    width: 100%;
+    background-color: #fff; 
+}
+
+
+.threeBoxWrap .boxWrap  .box{
+    display: table-cell;
+    text-align: center;
+    padding: 35px 47px;
+    background-color: #f7f6f6;
+    border: 3px solid #FFF;
+}
+
+.threeBoxWrap .boxWrap  .box + .box{
+    border-left: 0;
+}
+
+.threeBoxWrap .boxWrap  .box h3{
+    font-size: 18px;
+    margin: 25px 0;
+}
+
+.threeBoxWrap .boxWrap  .box p{
+    font-size: 12px;
+    margin: 0;
+}
+
+.big-title{
+    padding: 50px 0;
+}
+
+.big-title h2{
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.big-title p{
+    font-size: 16px;
+}
+
+.small-title h4{
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+
+.formBox h2{
+    color: #fff;
+    margin-bottom: 40px;
+    font-size: 30px;
+}
+.formBox .form-group{
+    margin-bottom: 20px;
+}
+.formBox .form-group label{
+    color: #fff;
+    font-size: 16px;
+}
+
+.formBox .form-control{
+    border-radius: 0;
+    height: 44px;
+    outline: none;
+}
+
+.formBox .btn{
+    margin-top: 25px;
+    width: 100%;
+    padding: 10px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.buySection .box {
+    border: 2px solid #fff;
+    padding: 15px;
+    min-height: 304px;
+    margin: 15px 0;
+}
+
+.buySection .box:hover{
+    background-color: #c71717;
+    transition-duration: 0.5s;      
+}
+
+
+.buySection .box h3{
+    margin: 15px 0;
+    font-size: 18px;
+    font-weight: 400;
+}
+.buySection .box p{
+    font-size: 13px;
+}
+
+.blogswrap .owl-item .item{
+    margin: 0 15px;
+    border: 1px solid #efefef;
+}
+
+.blogswrap .owl-carousel .owl-wrapper-outer{
+    padding: 18px 0;
+}
+
+.blogswrap .owl-item .item:hover{
+    box-shadow: 0px 2px 13px 2px #e4e4e4;
+}
+.blogswrap img{
+    width: 100%;
+}
+
+.blogswrap .blogText{
+    padding: 20px 15px;
+}
+
+.blogswrap .blogText .postby{
+    margin-bottom: 15px;
+}
+.blogswrap .blogText .postby span{
+    color: #b2b2b2;    
+    margin-right: 8px;
+}
+
+.blogswrap .blogText a.title{
+    font-size: 18px;
+    color: #181619;    
+}
+
+.blogswrap .blogText a.title:hover{
+    color: #c71717;
+    text-decoration: none;
+}
+.blogswrap .blogText p{
+    margin:  10px 0;
+    color: #b2b2b2;    
+}
+
+.blogswrap a,
+.blogswrap a:hover,
+.blogswrap a:focus{
+    color: #c71717;
+}
+
+
+.listWrap ul li{
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.listWrap ul li i{
+    margin-right: 5px;
+}
+
+
+.contact .form p{
+    text-align: center;
+    margin: 40px 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+
+
+.contact .form .form-control{
+    border-radius: 0; 
+    border: 1px solid #eaeaea;
+}
+
+.contact .form .form-group{
+    padding: 0 15px;   
+    margin-bottom: 25px; 
+}
+
+
+.contact .form .form-group.message{
+    padding: 0 10px;    
+}
+
+
+.footblogpost{    
+    display: table;
+    width: 100%;
+}
+
+.footblogpost + .footblogpost{
+    margin-top: 10px;
+}
+.footblogpost .postImg,
+.footblogpost .text{
+    display: table-cell;
+    vertical-align: top;
+}
+
+.footblogpost .text{
+    padding: 0 15px; 
+}
+
+.footBox{
+    padding: 0 20px;
+}
+
+.footBox .footIconText .footicon,
+.footBox .footIconText .foottext{
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px 10px;
+}
+
+.footBox .footIconText .footicon i{
+    font-size: 18px;
+    margin-top: 3px;
+    line-height: 22px;
+}
+
+.footBox .footIconText .foottext p{
+    margin: 0;
+    color: #9f9f9f;
+}
+
+.footBox .footIconText .foottext,
+.footBox a {    
+    color: #9f9f9f;
+}
+
+.footBox.one p{
+    margin: 0;
+    margin-top: 18px;
+    color: #9f9f9f;
+}
+
+.footBox h4{
+    margin-bottom: 10px;
+}
+
+.footblogpost .text a{
+    font-size: 16px;
+}
+
+.copyright{
+    padding: 5px;
+}
+
+.copyright p{
+    font-size: 12px;
+    margin: 0;
+}
+
+
+
+
+@media (max-width:767px){
+
+    .menu{
+        display: none;
+    }
+
+    .menuWrap .navbar-brand img {
+        width: 100%;
+    }
+
+    .threeBoxWrap {
+        margin-top: -15px;
+    }
+
+    .slide .textWrap h1 {
+        font-size: 18px;
+    }
+
+    .slide .textWrap h2 {
+        font-size: 14px;
+    }
+
+    .slide .btn-primary{
+        display: none;
+    }
+
+    .threeBoxWrap .boxWrap .box{
+        display: block;        
+        padding: 15px;
+    }
+
+    .threeBoxWrap .boxWrap .box + .box{
+        border-left: 3px solid #fff;
+    }
+    .redCar img{
+        width: 100%;
+    }
+
+    .contact .form .form-group,
+    .contact .form .form-group.message{
+        padding: 0;
+    }
+
+    .footBox {
+        padding: 20px 10px;        
+    }
+}
+
+@media (min-width:768px) and (max-width:991px){
+    
+    .menu .menuList li a{
+        padding: 5px 10px;
+    }
+
+    .slide .textWrap h1 {
+        font-size: 32px;
+    }
+
+    .slide .textWrap h2 {
+        font-size: 26px;
+    }
+    .threeBoxWrap .boxWrap .box{
+        padding: 10px;
+    }
+
+    .threeBoxWrap .boxWrap .box h3{
+        margin: 12px 0;
+    }
+
+
+    .redCar img{
+        width: 100%;
+    }
+}

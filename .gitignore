@@ -107,3 +107,4 @@ venv.bak/
 django.wsgi
 my.cnf
 .vscode/*
+.DS_Store

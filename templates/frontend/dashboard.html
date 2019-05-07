@@ -1,0 +1,630 @@
+{% extends "templates/layout/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<div class="top-head bg-black">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">                    
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </li>
+                </ul>       
+            </div>
+        </div> 
+    </div>
+</div>
+
+<div class="menuWrap">
+    <div class="container">
+        <div class="row">
+            <div class="col">                    
+                    <a class="navbar-brand" href="#">
+                        <img src={% static 'frontend/img/main-logo.png' %} alt="logo">
+                    </a>                    
+            </div>
+            <div class="col d-flex align-items-center justify-content-end">                    
+                <div class="menu">
+                    <ul class="menuList">
+                        <li class="item active">
+                            <a class="nav-link" href="#">Home </a>
+                        </li>
+                        <li class="item">
+                            <a class="nav-link" href="#">Service</a>
+                        </li>
+                        <li class="item">
+                            <a class="nav-link" href="#">About us</a>
+                        </li>
+
+                        <li class="item">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide">
+    <img src={% static 'frontend/img/slider-1.png' %} alt="">
+    <div class="textWrap">
+        <h1> Lorem Ipsum </h1>
+        <h2>is simply dummy text</h2>
+        <button type="button" class="btn btn-primary">READ MORE</button>
+    </div>
+</div>
+<div class="bg-light-gray">
+    <div class="container threeBoxWrap">
+        <div class="row">
+            <div class="col-12">                    
+            <div class="boxWrap">
+                <div class="box">
+                    <img src={% static 'frontend/img/icon-1.png' %} alt="icon-1">
+                    <h3> Used Car Buy</h3>
+                    <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
+                    The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                </div>
+                <div class="box">
+                    <img src={% static 'frontend/img/icon-2.png' %} alt="icon-1">
+                    <h3> Accident cars we buy </h3>
+                    <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
+                    The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                </div>
+                <div class="box">
+                    <img src={% static 'frontend/img/icon-3.png' %} alt="icon-1">
+                    <h3> Engine or Gear </h3>
+                    <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                </div>
+            </div>                  
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light-gray paddingT-50">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-xs-12">                    
+                <div class="big-title text-center">
+                    <h2>Lorem Ipsum is simply dummy text</h2>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less 
+
+                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="formbg padding-TB-75 bgImage">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-10 col-xs-12">
+                <div class="formBox">
+                    <h2>Lorem Ipsum is simply dummy text</h2>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Marke</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Alpina</option>
+                            <option>Alpina2</option>
+                            <option>Alpina3</option>
+                            <option>Alpina4</option>
+                            <option>Alpina5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Modell</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Modell 1</option>
+                            <option>Modell 2</option>
+                            <option>Modell 3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Erstzulassung</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Erstzulassung 1</option>
+                            <option>Erstzulassung 2</option>
+                            <option>Erstzulassung 3</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary">Jetzt kostenlos bewerten</button>
+                </div>
+            </div>
+        </div>
+    </div>      
+</div>
+
+<div class="paddingT-30">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">                    
+                <div class="big-title">
+                    <h2>Lorem Ipsum is simply dummy text</h2>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less 
+
+                        </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+                <div class="col-12">                    
+                    <div class="small-title">
+                        <h4>Lorem Ipsum is simply dummy text</h4>
+                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+
+                        </p>
+
+                        <p>
+                            Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                        </p>
+
+                        <p>
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                        </p>
+
+                    </div>
+
+                    <div class="inlinebtn">
+                            <button type="button" class="btn btn-primary">READ MORE</button>
+                            <button type="button" class="btn btn-dark">Contact Us</button>
+                    </div>
+
+                    <div class="text-center redCar">
+                        <img src={% static 'frontend/img/red-car-1.png' %} alt="cars">
+
+                    </div>
+
+
+                </div>
+            </div>
+    </div>
+</div>
+
+<div class="padding-TB-50 bg-black buySection">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">                    
+                <div class="big-title">
+                    <h2>Lorem Ipsum is simply dummy text</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.        
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-sm-4">
+                <div class="box">
+                    <img src={% static 'frontend/img/icon-5.png' %} alt="">
+                    <h3> Used car buying</h3>
+                    <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
+                    The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                </div>    
+            </div>                
+
+            <div class="col-sm-4">
+                <div class="box">
+                    <img src={% static 'frontend/img/icon-4.png' %} alt="">
+                    <h3> Engnine faillure car buy </h3>
+                    <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
+                    The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                </div>    
+            </div>                
+
+            <div class="col-sm-4">
+                <div class="box">
+                    <img src={% static 'frontend/img/icon-5.png' %} alt="">
+                    <h3> Gear box car buy</h3>
+                    <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
+                    The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                </div>    
+            </div>    
+        </div>
+
+        <div class="row text-center">
+                <div class="col-sm-4">
+                    <div class="box">
+                        <img src={% static 'frontend/img/icon-10.png' %} alt="">
+                        <h3> Accident car buy </h3>
+                        <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
+                        The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                    </div>    
+                </div>                
+
+                <div class="col-sm-4">
+                    <div class="box">
+                        <img src={% static 'frontend/img/icon-16.png' %} alt="">
+                        <h3> Jeep buy</h3>
+                        <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
+                        The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                    </div>    
+                </div>                
+
+                <div class="col-sm-4">
+                    <div class="box">
+                        <img src={% static 'frontend/img/icon-8.png' %} alt="">
+                        <h3> Truck buy</h3>
+                        <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
+                        The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                    </div>    
+                </div>    
+            </div>
+            
+    </div>
+</div>
+
+<div class="grayhomecar bgImage padding-TB-150">
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-md-6 col-xs-12">
+                        <div class="big-title">
+                            <h2>Lorem Ipsum is simply dummy text</h2>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            </p>
+                        </div>
+
+                        <div class="small-title">
+                            <h4>Lorem Ipsum is simply dummy text</h4>
+                            <p>
+                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                            </p>
+                            <p>
+                                Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. 
+                            </p>
+                            <p>                                            
+                                Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                            </p>
+                        </div>
+                </div>
+            </div>
+        </div>      
+    </div>
+
+<div class="padding-TB-50">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12">
+                <div class="big-title">
+                    <h2>Aktuelles aus dem Magazina</h2>
+                    <p>
+                        There are many variations of passages of Lorem Ipsum available.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row blogswrap">
+            <div class="col-12">
+                <div id="blogpost" class="owl-carousel">
+                    <div class="item">                                         
+                        <img src={% static 'frontend/img/blog-1.png' %} alt="">  
+                        <div class="blogText">                                
+                            <div class="postby">
+                                <span>Post by</span>
+                                <a href="#">Thomas Neil</a>
+                            </div>
+                            <a class="title" href="#">Lorem Ipsum is simply dummy text of the.</a>   
+                            <p>
+                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum...
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="item">                                         
+                        <img src={% static 'frontend/img/blog-2.png' %} alt="">  
+                        <div class="blogText">                                
+                            <div class="postby">
+                                <span>Post by</span>
+                                <a href="#">Thomas Neil</a>
+                            </div>
+                            <a class="title" href="#">Lorem Ipsum is simply dummy text of the.</a>   
+                            <p>
+                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum...
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="item">                                         
+                        <img src={% static 'frontend/img/blog-3.png' %} alt="">  
+                        <div class="blogText">                                
+                            <div class="postby">
+                                <span>Post by</span>
+                                <a href="#">Thomas Neil</a>
+                            </div>
+                            <a class="title" href="#">Lorem Ipsum is simply dummy text of the.</a>   
+                            <p>
+                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum...
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="item">                                         
+                        <img src={% static 'frontend/img/blog-1.png' %} alt="">  
+                        <div class="blogText">                                
+                            <div class="postby">
+                                <span>Post by</span>
+                                <a href="#">Thomas Neil</a>
+                            </div>
+                            <a class="title" href="#">Lorem Ipsum is simply dummy text of the.</a>   
+                            <p>
+                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum...
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">                                         
+                        <img src={% static 'frontend/img/blog-3.png' %} alt="">  
+                        <div class="blogText">                                
+                            <div class="postby">
+                                <span>Post by</span>
+                                <a href="#">Thomas Neil</a>
+                            </div>
+                            <a class="title" href="#">Lorem Ipsum is simply dummy text of the.</a>   
+                            <p>
+                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum...
+                            </p>
+                        </div>
+                    </div>
+
+                                                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="blackfullsidecar bgImage padding-TB-75">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="whiteText">
+                    <h3>Lorem Ipsum is simply dummy text</h3>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="whiteText listWrap">
+                    <ul class="list-group">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Lorem Ipsum is simply dummy text</span>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Lorem Ipsum is simply dummy text</span>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Lorem Ipsum is simply dummy text</span>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Lorem Ipsum is simply dummy text</span>
+                        </li>                                
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xs-12">
+                    <div class="whiteText listWrap">
+                        <ul class="list-group">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Lorem Ipsum is simply dummy text</span>
+                            </li>
+
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Lorem Ipsum is simply dummy text</span>
+                            </li>
+
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Lorem Ipsum is simply dummy text</span>
+                            </li>
+
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Lorem Ipsum is simply dummy text</span>
+                            </li>                                
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="padding-TB-25">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="big-title">
+                    <h2>Your partner in the car change</h2>
+                    <p>
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. 
+                    </p>
+                    <p>
+                        Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. 
+                    </p>
+                    <p>                                    
+                        Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="padding-TB-50 bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="contact-title">
+                        <h2>CONTACT US</h2>
+                        <p>
+                            It is a long established fact that a reader will be distracted by the readable 
+                        </p>                                                                
+                    </div>
+                </div>
+            </div>
+
+            <div class="row contact">
+                <div class="col-12">
+                    <div class="form">                                
+                        <p class="feelfree"> FEEL FREE TO SEND US A MESSAGE </p>    
+                        
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="firstName">First Name</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name">                  
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="last Name">  
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="youremail">Your Email</label>
+                                <input type="email" class="form-control" id="yourEmail" placeholder="Your Email">  
+                            </div>
+                        </div>
+
+                        <div class="form-group message">
+                            <label for="yourMessage">Your Message</label>
+                            <textarea class="form-control" id="yourMessage" rows="4" placeholder="Your Message"></textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary">Send Message</button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="bg-black footer padding-TB-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footBox one">
+                        <img src={% static 'frontend/img/white-logo.png' %} alt="">
+                        <p>
+                            Duis aute irure reprehend voluptate velit ese acium fugiat nula pariatur exceptus ipsum dolor sit amet consectetur adipisic elita sed eiusmod tempor.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="footBox">
+                        <h4>Contact Info</h4>
+                        <div class="footIconText">                                
+                            <div class="footicon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="foottext">
+                                <p>
+                                    Fairview Ave, </br>
+                                    El Monte,  </br>
+                                    CA, 91732
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="footIconText">                                
+                            <div class="footicon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="foottext">
+                                <a href="">
+                                    0800 000 8293
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div class="footIconText">                                
+                            <div class="footicon">
+                                <i class="far fa-envelope"></i>
+                            </div>
+                            <div class="foottext">
+                                <a href="#">
+                                    support@gebrauchtauto.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="footBox">
+                        <h4>Recent Blog</h4>
+
+                        <div class="footblogpost">
+                            <div class="postImg">
+                                <img src={% static 'frontend/img/small-blog-1.png' %} alt="blog">
+                            </div>
+                            <div class="text">
+                                <a href="#"> Blue Bottle butcher scenester</a>
+                                <p class="date"> December 28, 2015 </p>
+                            </div>
+                        </div>
+
+                        <div class="footblogpost">
+                            <div class="postImg">
+                                <img src={% static 'frontend/img/small-blog-2.png' %} alt="blog">
+                            </div>
+                            <div class="text">
+                                <a href="#"> Blue Bottle butcher scenester</a>
+                                <p class="date"> December 28, 2015 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
