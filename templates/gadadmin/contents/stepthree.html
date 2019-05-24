@@ -1,0 +1,351 @@
+{% extends "templates/gadadmin/layout/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    {% include 'templates/gadadmin/layout/header.html' %}
+    {% include 'templates/gadadmin/layout/sidebar.html' %}
+
+        <div class="content-wrapper">
+            <section class="content-header">
+              <h1>
+                Stepthree Contents
+                <small>Update stepthree contents</small>
+              </h1>
+              <ol class="breadcrumb">
+                <li><a href="/gadadmin/dashboard">
+                    <i class="fa fa-dashboard"></i>
+                    Home</a>
+                </li>
+                <li class="active">Setup Stepthree Contents</li>
+              </ol>
+            </section>
+
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if messages %}
+                              {% for message in messages %}
+                                <div class="alert
+                                    {% if message.tags == 'error' %}
+                                        alert-danger
+                                    {% else %}
+                                        alert-{{ message.tags }}
+                                    {% endif %}
+                                    alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    {{ message }}
+                                </div>
+                              {% endfor %}
+                          {% endif %}
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">
+                                    Stepthree contents
+                                </h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body pad">
+                                <form
+                                    action="/gadadmin/stepthree_content/{{ city_name }}"
+                                    method="post"
+                                >
+                                    {% csrf_token %}
+
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <select class="form-control select2"
+                                                onchange="changeContent(this)">
+                                            {% for city in cities %}
+                                                <option
+                                                    {% if city.name == city_name %}
+                                                        selected="selected"
+                                                    {% endif %}
+                                                >
+                                                    {{ city.name }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 1 </label>
+                                        <textarea id="editor"
+                                                  name="stepthree_section_1"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 2 </label>
+                                        <textarea id="editor1"
+                                                  name="stepthree_section_2"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 3 (1)
+                                        </label>
+                                        <textarea id="editor2"
+                                                  name="stepthree_section_3_1"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_3_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 3 (2)
+                                        </label>
+                                        <textarea id="editor3"
+                                                  name="stepthree_section_3_2"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_3_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 3 (3)
+                                        </label>
+                                        <textarea id="editor4"
+                                                  name="stepthree_section_3_3"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_3_3' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 3 (4)
+                                        </label>
+                                        <textarea id="editor5"
+                                                  name="stepthree_section_3_4"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_3_4' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 4 (1)
+                                        </label>
+                                        <textarea id="editor6"
+                                                  name="stepthree_section_4_1"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_4_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 4 (2)
+                                        </label>
+                                        <textarea id="editor7"
+                                                  name="stepthree_section_4_2"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_4_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 4 (3)
+                                        </label>
+                                        <textarea id="editor8"
+                                                  name="stepthree_section_4_3"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_4_3' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 4 (4)
+                                        </label>
+                                        <textarea id="editor9"
+                                                  name="stepthree_section_4_4"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_4_4' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 5
+                                        </label>
+                                        <textarea id="editor10"
+                                                  name="stepthree_section_5"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_5' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 6
+                                        </label>
+                                        <textarea id="editor11"
+                                                  name="stepthree_section_6"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_6' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 7 (1)
+                                        </label>
+                                        <textarea id="editor12"
+                                                  name="stepthree_section_7_1"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_7_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Stapthree Section 7 (2)
+                                        </label>
+                                        <textarea id="editor13"
+                                                  name="stepthree_section_7_2"
+                                                  rows="10" cols="80">
+                                            {% if stepthree_content %}
+                                                {% for content in stepthree_content %}
+                                                    {% if content.name == 'stepthree_section_7_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- /.col -->
+                                        <div class="col-xs-4 col-md-2">
+                                          <button type="submit"
+                                                  class="btn btn-primary
+                                                   btn-block
+                                                   btn-flat">Save</button>
+                                        </div>
+                                          <div class="col-md-2">
+                                              <a href="/gadadmin/dashboard"
+                                                class="
+                                                btn
+                                                btn-danger
+                                                btn-block
+                                                btn-flat pull-right"
+                                            >
+                                                Cancel
+                                            </a>
+                                          </div>
+                                        <!-- /.col -->
+                                      </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    {% include 'templates/gadadmin/layout/footer.html' %}
+
+{% endblock %}
+
+{% block page_script %}
+    <script>
+        $(function () {
+            CKEDITOR.replace('editor');
+            CKEDITOR.replace('editor1');
+            CKEDITOR.replace('editor2');
+            CKEDITOR.replace('editor3');
+            CKEDITOR.replace('editor4');
+            CKEDITOR.replace('editor5');
+            CKEDITOR.replace('editor6');
+            CKEDITOR.replace('editor7');
+            CKEDITOR.replace('editor8');
+            CKEDITOR.replace('editor9');
+            CKEDITOR.replace('editor10');
+            CKEDITOR.replace('editor11');
+            CKEDITOR.replace('editor12');
+            CKEDITOR.replace('editor13');
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        })
+
+        function changeContent(city) {
+            console.log(city.value, '/gadadmin/stepone_content/'+city.value);
+            window.location.replace('/gadadmin/stepone_content/'+city.value)
+        }
+    </script>
+{% endblock %}

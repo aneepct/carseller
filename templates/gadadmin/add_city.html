@@ -1,0 +1,214 @@
+{% extends "templates/gadadmin/layout/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    {% include 'templates/gadadmin/layout/header.html' %}
+    {% include 'templates/gadadmin/layout/sidebar.html' %}
+
+        <div class="content-wrapper">
+            <section class="content-header">
+              <h1>
+                Add City
+                <small>Add new city</small>
+              </h1>
+              <ol class="breadcrumb">
+                <li><a href="/gadadmin/dashboard"><i class="fa fa-dashboard"></i>
+                    Home</a></li>
+                  <li>
+                      <a href="/gadadmin/cities_page">
+                          <i class="fa fa-map-signs"></i>
+                          Cities
+                      </a>
+                  </li>
+                <li class="active">Add City</li>
+              </ol>
+            </section>
+
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Add new city</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                 {% if messages %}
+                                      {% for message in messages %}
+                                        <div class="alert
+                                            {% if message.tags == 'error' %}
+                                                alert-danger
+                                            {% else %}
+                                                alert-{{ message.tags }}
+                                            {% endif %}
+                                            alert-dismissable">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            {{ message }}
+                                        </div>
+                                      {% endfor %}
+                                  {% endif %}
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form action="/gadadmin/add_city"
+                                              method="post"
+                                              role="form"
+                                        >
+                                            {% csrf_token %}
+
+                                            <div class="form-group">
+                                                <label
+                                                        for="name"
+                                                >
+                                                    Name
+                                                </label>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="name"
+                                                        name="name"
+                                                        placeholder="Name"
+                                                >
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label
+                                                        for="street"
+                                                >
+                                                    Street
+                                                </label>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="street"
+                                                        name="street"
+                                                        placeholder="Street"
+                                                >
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label
+                                                        for="city"
+                                                >
+                                                    City
+                                                </label>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="city"
+                                                        name="city"
+                                                        placeholder="City"
+                                                >
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label
+                                                        for="zipcode"
+                                                >
+                                                    Zipcode
+                                                </label>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="zipcode"
+                                                        name="zipcode"
+                                                        placeholder="Zip Code"
+                                                >
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label
+                                                        for="area"
+                                                >
+                                                    Area
+                                                </label>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="area"
+                                                        name="area"
+                                                        placeholder="Area"
+                                                >
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label
+                                                        for="partner"
+                                                >
+                                                    Partner
+                                                </label>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="partner"
+                                                        name="partner"
+                                                        placeholder="Partner"
+                                                >
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label
+                                                        for="lat"
+                                                >
+                                                    Latitude
+                                                </label>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="lat"
+                                                        name="lat"
+                                                        placeholder="Latitude"
+                                                >
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label
+                                                        for="lng"
+                                                >
+                                                    Langitude
+                                                </label>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="lng"
+                                                        name="lng"
+                                                        placeholder="Langitude"
+                                                >
+                                            </div>
+
+                                          <div class="row">
+                                            <!-- /.col -->
+                                            <div class="col-xs-4 col-md-2">
+                                              <button type="submit"
+                                                      class="btn btn-primary
+                                                       btn-block
+                                                       btn-flat">Add</button>
+                                            </div>
+                                              <div class="col-md-2">
+                                                  <a href="/gadadmin/dashboard"
+                                                    class="
+                                                    btn
+                                                    btn-danger
+                                                    btn-block
+                                                    btn-flat pull-right"
+                                                >
+                                                    Cancel
+                                                </a>
+                                              </div>
+                                            <!-- /.col -->
+                                          </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    {% include 'templates/gadadmin/layout/footer.html' %}
+{% endblock %}

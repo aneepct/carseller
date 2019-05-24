@@ -12,6 +12,10 @@ body{
     padding: 0 !important;
 }
 
+.padding-TB-10{
+    padding: 10px 0;
+}
+
 .padding-TB-20{
     padding: 20px 0;
 }
@@ -36,12 +40,24 @@ body{
     padding: 150px 0;
 }
 
+.padding-T-15{
+    padding-top: 15px;
+}
+
 .paddingT-50{
     padding-top: 50px;
 }
 
-.paddingTB-100{
+.paddingT-100{
     padding-top: 100px;
+}
+
+.paddingT-0{
+    padding-top: 0 !important;
+}
+
+.paddingB-50{
+    padding-bottom: 50px !important;
 }
 
 .bgImage{
@@ -58,13 +74,77 @@ body{
     background-image: url(../img/bg-image-2.png);    
 }
 
+
 .blackfullsidecar{
     background-image: url(../img/bg-image-3.png);    
 }
 
-.whiteText{
+.bg-multycar{
+    background-image: url(../img/bg-image-4.png);    
+}
+
+.bg-graystep1car{
+    background-image: url(../img/gray-car-1.png);
+    background-size: auto;
+    background-position: bottom right;
+}
+
+.bg-radMultyCar{
+    background-image: url(../img/bg-image-5.png);    
+}
+
+.bg-blueCar{
+    background-image: url(../img/testimonial-bg.png);    
+}
+.bg-redcarhalf{
+    background-image: url(../img/red-car-2.png);    
+    background-size: auto;
+    background-position: bottom right;
+}
+
+.bg-redCarxuv{
+    background-image: url(../img/red-car-3.png);    
+    background-size: auto;
+    background-position: center right;
+}
+
+.bg-grayhalfxuv{
+    background-image: url(../img/bg-image-9.png);    
+    background-size: auto;
+    background-position: center left;
+}
+
+
+.bgHandkey{
+    background-image: url(../img/bg-image-01.png);    
+    background-size: auto;
+    background-position: center right;
+}
+
+
+.bg-redMultycar{
+    background-image: url(../img/bg-image-14.png); 
+}
+
+.bg-carRightGray{
+    background-image: url(../img/bg-image-13.png); 
+    background-size: auto;
+    background-position: bottom right;
+}
+
+.cityRoadImage{
+    background-image: url(../img/bg-image-11.png); 
+}
+
+.bg-deskImg{
+    background-image: url(../img/bg-image-10.png); 
+}
+
+.textWhite{
     color: #fff !important;
 }
+
+
 
 
 img{
@@ -108,6 +188,18 @@ ul li{
     border-color: #212121;
 }
 
+.btn{
+    font-size: 14px;
+    padding: 8px 35px;  
+}
+
+.homebtnIn .btn{    
+    margin-top: 15px;
+}
+
+.homebtnIn .btn + .btn{
+    margin-left: 30px;
+}
 
 .top-head{
     padding: 12px;
@@ -231,10 +323,18 @@ ul li{
     font-size: 16px;
 }
 
+.formBox.textBlack .form-group label{
+    color: #181619;
+}
+
 .formBox .form-control{
     border-radius: 0;
     height: 44px;
     outline: none;
+}
+
+.formBox textarea.form-control{
+    height: auto;
 }
 
 .formBox .btn{
@@ -354,6 +454,433 @@ ul li{
 }
 
 
+
+.bg-multycar .box{
+    margin: 0 35px;
+    padding: 40px 35px;
+    background-color: rgba(24, 22, 25, 0.7);
+    color: #fff;
+}
+
+.bg-multycar .box h3{
+    margin: 35px 0;
+}
+
+.bg-multycar .box p{
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+.counter .timer{
+    margin: 25px 0;
+}
+
+.counter .count-text {
+    font-size: 18px;
+}
+
+.callOut h3 {
+    font-style: italic;
+    font-size: 40px;
+}
+
+.callOut h2 {
+    font-style: italic;
+    font-size: 55px;
+}
+
+
+.textLeftRight .imgBox img{
+    width: 100%;
+}
+
+.textLeftRight .textBox {
+    padding: 0 35px 0 10px;
+}
+
+.textLeftRight .textBox h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.textLeftRight .textBox p{
+    font-size: 16px;
+}
+
+.fourBoxSection .box{
+    border: 2px solid #fff;
+    padding: 15px;
+    /* min-height: 304px; */
+    margin: 15px 0;
+}
+
+.fourBoxSection .box:hover {
+    background-color: #c71717;
+    transition-duration: 0.5s;
+}
+
+.fourBoxSection .leftIcon .box{
+    display: table;
+    width: 100%;
+}
+.fourBoxSection .leftIcon img,
+.fourBoxSection .leftIcon .textBox{
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px 15px; 
+}
+
+.fourBoxSection .leftIcon .textBox{
+    text-align: left;
+}
+
+.fourBoxSection .leftIcon .textBox h3{
+    font-size: 18px;
+}
+
+.fourBoxSection .leftIcon .textBox p{
+    margin: 0;
+}
+
+
+
+
+
+
+.testimonialsWrap .owl-wrapper{
+    padding-top: 80px;
+}
+
+
+.testimonialsWrap .item{
+    margin: 0 25px;
+}
+
+
+.testimonialsWrap .item img{
+    margin-top: -80px;
+
+}
+
+.testimonialsWrap .big-title {
+    padding: 60px 0 0 0;
+}
+.testimonialsWrap .big-title h2{
+    color: #fff;
+
+}
+
+.testimonialsWrap .big-title p{
+    color: #fff;
+}
+
+
+.testimonialsWrap .item h4{
+    margin: 20px 0 10px 0;
+}
+
+.testimonialsWrap .item h5{
+    margin: 0px 0 20px 0;
+}
+.testimonialsWrap .blogTestimonial {
+    background-color: #fff;
+    padding: 25px;
+    min-height: 321px;
+}
+
+.gmailBox {
+    padding: 25px 30px;
+    border: 1px solid #ced4da;
+    text-align: center;
+    margin: 30px;
+}
+
+.gmailBox h3{
+    color: #525252;
+    line-height: 36px;
+}
+
+.gmailBox p{
+    margin: 35px 0;
+}
+
+.gmailBox img{
+    display: block;
+    margin: 15px auto;
+}
+
+
+.appointmentSection .title h3{
+    margin: 20px 0 50px 0;
+    font-weight: 400;
+}
+
+.appointmentSection .box{
+    padding: 15px;
+}
+
+.appointmentSection .textBox{
+    margin-top: 35px;   
+}
+
+
+.appointmentSection .textBox h3{
+    font-weight: 400;
+    Font-size: 20px;
+}
+
+
+.textLeftRight .text-center h2{
+    margin: 25px 0;
+}
+
+.batchSection .textBox p{
+    font-size: 16px;
+    line-height: 26px;
+    padding: 10px;
+}
+
+
+
+
+.progressbar {
+    text-align: center;
+    margin-top: 70px;
+
+}
+.progressbar li {
+    list-style: none;
+    display: inline-block;
+    width: 30.33%;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+}
+.progressbar li:before {
+    content: " ";
+    width: 30px;
+    height: 30px;
+    line-height : 30px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    background-color: #ddd;
+}
+.progressbar li:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    top: 10px;
+    left: -50%;
+    z-index : -1;
+}
+.progressbar li:first-child:after {
+    content: none;
+}
+
+.progressbar li.active {
+    color: #c71717;
+}
+
+.progressbar li.active:before {
+    border-color: #c71717;
+    background-color: #c71717;
+    color: #fff;
+} 
+
+.progressbar li.active + li:after {
+    background-color: #c71717;
+}
+
+
+.progressbar h4 {
+    position: absolute;
+    font-size: 20px;
+    top: -69%;
+    left: 50%;
+    transform: translate(-50%, -69%);
+    width: 100%;
+    color: #828282;
+}
+
+.stapSection .small-title h4{
+    margin-top: 20px;
+    color: #212121;
+    font-style: italic;
+}
+
+.stepOneSection{
+    padding: 0 0 100px 0;
+}
+
+.listDate .item  .far{
+    font-size: 22px;
+    margin-right: 15px;
+}
+
+.listDate .item span {
+    font-size: 18px;
+}
+.listDate .item {
+    display: inline-block;
+    min-width: 225px;
+    margin: 10px 25px;
+}
+
+.callIcon .fas{
+    font-size: 35px;
+}
+
+.callIcon h4{
+    font-size: 24px;
+    margin: 15px 0;
+}
+
+
+.cityForm .formBox .form-group label{
+    color: #181619;
+}
+
+.cityTitle .small-title h4{
+    font-size: 30px;
+}
+
+.cityTitle .small-title p{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.cityTitle .small-title {
+    margin-bottom: 25px;
+}
+
+.cityForm .formtitle h3{
+    margin-bottom: 40px;
+}
+
+.cityForm .imgBox {
+    padding: 15px;
+}
+
+.cityForm .imgBox img{
+    width: 100%;
+}
+
+
+.map-title h2{
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.cityRoadImage .textWhite p{
+    margin-bottom: 35px;
+}
+
+.buySection .howitWork .box {
+    min-height: auto;
+    padding: 30px;
+}
+
+.buySection .howitWork .box h3{
+    margin: 30px 0 10px 0;
+}
+ 
+
+
+.serviceSec .leftIconBox{
+    display: table;
+    width: 100%;
+    margin-bottom: 40px;
+}
+.serviceSec .leftIconBox .icon,
+.serviceSec .leftIconBox .text{
+    display: table-cell;
+    vertical-align: top;
+    padding: 0 10px;
+}
+.serviceSec .leftIconBox .icon{
+    padding-top: 10px;
+}
+
+.serviceSec .leftIconBox .icon i{
+    border: 1px solid #ddd;
+    color: #9e9e9e;
+    padding: 22px;
+    border-radius: 50%;
+    font-size: 30px;
+}
+
+.serviceSec .leftIconBox .text h4{
+    font-size: 16px;
+} 
+
+.customersService .customersTestimonial {
+    text-align: center;
+    padding: 25px 30px;
+    margin: 0 18px;
+}
+
+.customersService .customersTestimonial:hover{
+    background-color: #c71717;
+    color: #fff;
+    transition-duration: 0.5s;   
+}
+
+.customersService .customersTestimonial img{
+    border-radius: 50%; 
+    margin-bottom: 15px; 
+}
+
+.customersService .customersTestimonial p{
+    margin-bottom: 40px;
+}
+
+
+.customersService .customersTestimonial h4,
+.customersService .customersTestimonial h5{
+    font-size: 14px;
+}
+
+.customersService .customersTestimonial span{
+    margin-top: 20px;
+    display: block;
+}
+.customersService .customersTestimonial i.fas.fa-quote-left {
+    position: absolute;
+    left: 33px;
+    top: 22%;
+    font-size: 85px;
+    opacity: 0.5;
+    color: #e1e1e1;
+    z-index: -1;
+}
+
+
+.customersService .customersTestimonial:hover i.fas.fa-quote-left {
+    z-index: 0;
+}
+
+
+
+
+
+
+
+
+
 .footblogpost{    
     display: table;
     width: 100%;
@@ -421,11 +948,63 @@ ul li{
     font-size: 12px;
     margin: 0;
 }
+#accordion{
+    padding: 0 20px;
+}
+#accordion .card-header .fa{
+    width: 20px;
+    color: #c71717;
+    display: inline-block;
+    vertical-align: middle;
+}
 
+#accordion .card-header .btn{
+    padding: 0;
+    color: #c71717;
+}
 
+#accordion .card-header .btn.collapsed{
+    color: #181619;
+}
+
+#accordion .card{
+    border:none;
+    border-bottom: 2px solid rgba(0,0,0,.125); 
+    border-radius: 0;
+    margin: 1px 0;
+}
+
+#accordion .card-header{
+    background-color: #fff;
+    padding: 16px 0;
+    border-bottom: none;
+}
+
+#accordion .card-header:first-child{
+    border-radius: 0;
+}
+
+#accordion .card-body{
+    padding: 0 25px 20px 25px;
+}
+
+.batchSection{
+    padding: 25px;
+}
+
+.batchSection img{
+    padding-bottom: 25px;
+}
+
+.batchSection img p{
+    font-size: 16px;
+}
 
 
 @media (max-width:767px){
+    .btn{
+        width: 100%;
+    }
 
     .menu{
         display: none;
@@ -454,10 +1033,34 @@ ul li{
     .threeBoxWrap .boxWrap .box{
         display: block;        
         padding: 15px;
+        border: 3px solid #fff;
     }
 
     .threeBoxWrap .boxWrap .box + .box{
         border-left: 3px solid #fff;
+        border-top: 1px solid #fff;
+    }
+
+    .big-title p {
+        font-size: 14px;
+    }
+
+    .homebtnIn .btn {
+        margin-top: 15px;
+        width: 100%;
+    } 
+
+    .homebtnIn .btn + .btn {
+        margin-left: 0px;
+    }
+
+
+    .big-title {
+        padding: 25px 0;
+    }
+
+    .redCar {
+        margin-top: 30px;
     }
     .redCar img{
         width: 100%;
@@ -470,6 +1073,159 @@ ul li{
 
     .footBox {
         padding: 20px 10px;        
+    }
+
+    .grayhomecar, .bgHandkey {
+        background-image: none;
+        background-color: #ececec;
+    }
+
+    .progressbar h4,
+    .textLeftRight .textBox p{
+        font-size: 14px;
+    }
+    .progressbar li{
+        width: 32.33%;
+    }
+
+    .progressbar li:before{
+        width: 20px;
+        height: 20px;
+    }
+
+    .progressbar li:after{
+        height: 5px;
+        top:8px;
+    }
+
+    .stepOneSection {
+        padding: 0 0 200px 0;
+    }
+    .bg-graystep1car{
+        background-size: 100%;
+    }
+
+    .bg-multycar .box{
+        margin: 0px;
+        padding: 15px 5px;
+    }
+
+    .bg-multycar .box{
+        margin-bottom: 15px;
+    }
+
+    .counter{
+        margin: 15px 0;
+    }
+
+    .callOut h3{
+        font-size: 20px;
+    }
+
+    .callOut h2{
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+
+    .textLeftRight .textBox{
+        padding: 0;
+    }
+
+    .carimg img{
+        width: 100%;
+    }
+
+    .fourBoxSection .leftIcon img, .fourBoxSection .leftIcon .textBox{
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .bg-redcarhalf{
+        background-size: contain;
+        padding-bottom: 343px;
+    }
+    .bg-redCarxuv,
+    .bg-grayhalfxuv{
+        background-size: contain;
+        background-position: bottom;
+        padding-bottom: 265px;
+    }
+
+    .batchSection{
+        text-align: center;
+    }
+
+    .gmailBox{
+        margin: 30px 0;
+    }
+
+    .batchSection img{
+        padding: 15px;
+    }
+
+    .textLeftRight .imgBox img{
+        padding-bottom: 25px;
+    }
+
+    .listDate .item{
+        margin: 20px 0;
+        display: block;
+    }
+
+    .listDate .item span:first-child{
+        width: 138px;
+        display: inline-block;
+    }
+
+
+    .cityForm .formtitle h3,
+    .map-title h2{
+        font-size: 20px;
+    }
+
+    .bg-carRightGray{
+        background-image: none;
+    }
+
+    .big-title h2{
+        font-size: 22px;
+    }
+
+    .formBox .imgBox img{
+        display: none;
+    }
+
+    .cityTitle .small-title h4 {
+        font-size: 24px;
+    }
+
+    .cityTitle .small-title p{
+        font-size: 18px;
+    }
+
+    .serviceSec .leftIconBox .icon, 
+    .serviceSec .leftIconBox .text{
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+
+    .padding-TB-150 {
+        padding: 25px 0;
+    }
+
+    .padding-TB-50 {
+        padding: 25px 0;
+    }
+
+    .padding-TB-75 {
+        padding: 50px 0;
+    }
+
+    .padding-TB-30 {
+        padding: 15px 0;
     }
 }
 
@@ -494,8 +1250,79 @@ ul li{
         margin: 12px 0;
     }
 
+    .redCar {
+        margin-top: 30px;
+    }
 
     .redCar img{
         width: 100%;
     }
+
+    .footBox {
+        padding: 15px 0px;
+    }
+
+    .bgHandkey{
+        background-image: none;
+        background-color: #ececec;
+    }
+
+    .progressbar h4{
+        font-size: 16px;
+    }
+
+    .formBox.textBlack{
+        background-color: rgba(255, 255, 255, 0.43);
+        padding: 15px;
+    }
+
+    .bg-multycar .box{
+        margin: 0;
+        padding: 15px;
+    }
+
+    .callOut h3{
+        font-size: 30px;
+    }
+
+    .callOut h2{
+        font-size: 44px;
+    }
+    .carimg img{
+        width: 100%;
+    }
+
+    .bg-grayhalfxuv,
+    .bg-redCarxuv,
+    .bg-redcarhalf{
+        background-image: none;
+
+    }
+
+
+
+    .gmailBox{
+        margin: 30px 0;
+        padding: 25px 10px;
+    }
+
+    .listDate .item{
+        min-width: 179px;
+        margin: 10px;
+    }
+
+    .cityTitle.padding-TB-50 {
+        padding: 30px 0;
+    }
+
+    .bg-carRightGray{
+        background-image: none;
+    }
+
+    .formBox .imgBox{
+        display: none;
+    }
+  
 }
+
+

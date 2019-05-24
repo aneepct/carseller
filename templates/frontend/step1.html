@@ -1,0 +1,402 @@
+{% extends "templates/layout/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+{% include 'templates/layout/header.html' %}
+
+<div class="padding-TB-50 stapSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="progressbar">
+                    <li class=""> <h4> Choose your vehicle </h4> </li>
+                    <li class=""> <h4> Information about  vehicle and condition </h4> </li>
+                    <li> <h4>Your online rating </h4> </li>
+                </ul>
+                <div class="small-title text-center">
+                    {% if stepone_content %}
+                        {% for content in stepone_content %}
+                            {% if content.name == 'stepone_section_1' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="stepOneSection  bgImage bg-graystep1car">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-8 col-xs-12">
+                <div class="formBox textBlack">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Brand</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Alpina</option>
+                            <option>Alpina2</option>
+                            <option>Alpina3</option>
+                            <option>Alpina4</option>
+                            <option>Alpina5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Model</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Modell 1</option>
+                            <option>Modell 2</option>
+                            <option>Modell 3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Year</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Erstzulassung 1</option>
+                            <option>Erstzulassung 2</option>
+                            <option>Erstzulassung 3</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary">Jetzt kostenlos bewerten</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="padding-TB-75 bg-multycar bgImage buySection">
+            <div class="container">
+
+                <div class="row text-center">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="box">
+                            <img src={% static 'frontend/img/icon-17.png' %} alt="">
+                            {% if stepone_content %}
+                                {% for content in stepone_content %}
+                                    {% if content.name == 'stepone_section_2_1' %}
+                                        {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="box">
+                            <img src={% static 'frontend/img/icon-17.png' %} alt="">
+                            {% if stepone_content %}
+                                {% for content in stepone_content %}
+                                    {% if content.name == 'stepone_section_2_2' %}
+                                        {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="padding-TB-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="big-title">
+                            {% if stepone_content %}
+                                {% for content in stepone_content %}
+                                    {% if content.name == 'stepone_section_3' %}
+                                        {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div class="bg-radMultyCar bgImage padding-TB-50 textWhite">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="big-title">
+                    {% if stepone_content %}
+                        {% for content in stepone_content %}
+                            {% if content.name == 'stepone_section_4' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-3 col-12">
+                <div class="counter">
+                    <img src={% static 'frontend/img/icon-9.png' %} alt="icon">
+                    <h2 class="timer count-title count-number" data-to="100" data-speed="1500"></h2>
+                    <p class="count-text ">Used car </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-12">
+                <div class="counter">
+                        <img src={% static 'frontend/img/icon-10.png' %} alt="icon">
+                    <h2 class="timer count-title count-number" data-to="1700" data-speed="1500"></h2>
+                    <p class="count-text ">Accident cars</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-12">
+                <div class="counter">
+                        <img src={% static 'frontend/img/icon-12.png' %} alt="icon">
+                    <h2 class="timer count-title count-number" data-to="11900" data-speed="1500"></h2>
+                    <p class="count-text ">Engine failure cars </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-12">
+                <div class="counter">
+                    <img src={% static 'frontend/img/icon-11.png' %} alt="icon">
+                    <h2 class="timer count-title count-number" data-to="157" data-speed="1500"></h2>
+                    <p class="count-text ">Gear failure car</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="padding-TB-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="big-title">
+                        {% if stepone_content %}
+                            {% for content in stepone_content %}
+                                {% if content.name == 'stepone_section_5' %}
+                                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-multycar bgImage padding-TB-50 textWhite">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-8">
+                    <div class="callOut">
+                        {% if stepone_content %}
+                            {% for content in stepone_content %}
+                                {% if content.name == 'stepone_section_6' %}
+                                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 align-items-center d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary"> contact Us </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="padding-TB-30 textLeftRight">
+        <div class="container">
+            <div class="row padding-TB-30">
+                <div class="col-md-7">
+                    <div class="textBox">
+                        {% if stepone_content %}
+                            {% for content in stepone_content %}
+                                {% if content.name == 'stepone_section_7_1' %}
+                                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="imgBox">
+                        <img src={% static 'frontend/img/cars.png' %} alt="cars">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row padding-TB-30">
+                <div class="col-md-5">
+                    <div class="imgBox">
+                        <img src={% static 'frontend/img/cars2.png' %} alt="cars">
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="textBox">
+                        {% if stepone_content %}
+                            {% for content in stepone_content %}
+                                {% if content.name == 'stepone_section_7_2' %}
+                                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="row padding-TB-30">
+                <div class="col-md-7">
+                    <div class="textBox">
+                        {% if stepone_content %}
+                            {% for content in stepone_content %}
+                                {% if content.name == 'stepone_section_7_3' %}
+                                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="imgBox">
+                        <img src={% static 'frontend/img/cars3.png' %} alt="cars">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row padding-TB-30">
+                <div class="col-12 text-center">
+                        <button type="button" class="btn btn-primary"> Rate now for free </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="padding-TB-50 bg-blueCar bgImage testimonialsWrap">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-12">
+                        <div class="big-title">
+                            {% if stepone_content %}
+                                {% for content in stepone_content %}
+                                    {% if content.name == 'stepone_section_8' %}
+                                        {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div id="testimonial" class="owl-carousel">
+                            <div class="item">
+                                <div class="blogTestimonial">
+                                    <img src="{% static 'frontend/img/test.png' %}" alt="">
+                                    <h4>jems lima</h4>
+                                    <h5>
+                                        Lorem Ipsum is simply dummy text of the.
+                                    </h5>
+                                    <p>
+                                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of..
+                                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of..
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="blogTestimonial">
+                                    <img src={% static 'frontend/img/test.png' %} alt="">
+                                    <h4>jems lima</h4>
+                                    <h5>
+                                        Lorem Ipsum is simply dummy text of the.
+                                    </h5>
+                                    <p>
+                                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum...
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                    <div class="blogTestimonial">
+                                        <img src={% static 'frontend/img/test.png' %} alt="">
+                                        <h4>jems lima</h4>
+                                        <h5>
+                                            Lorem Ipsum is simply dummy text of the.
+                                        </h5>
+                                        <p>
+                                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum...
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="blogTestimonial">
+                                        <img src={% static 'frontend/img/test.png' %} alt="">
+                                        <h4>jems lima</h4>
+                                        <h5>
+                                            Lorem Ipsum is simply dummy text of the.
+                                        </h5>
+                                        <p>
+                                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum...
+                                        </p>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    {% include 'templates/layout/footer.html' %}
+
+{% endblock %}
+
+{% block page_script %}
+    <script>
+        $(function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        });
+
+        function showPosition(position) {
+            console.log(position);
+            {#x.innerHTML = "Latitude: " + position.coords.latitude + #}
+            {#"<br>Longitude: " + position.coords.longitude;#}
+        }
+
+        function getCarModels(carModelId){
+            console.log(carModelId.value);
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(JSON.parse(JSON.parse(this.responseText)));
+                }
+            };
+            xhttp.open("GET", "/get_car_models/"+carModelId.value, true);
+            xhttp.send();
+        }
+
+        $(document).ready(function() {
+
+            $("#testimonial").owlCarousel({
+                items : 2,
+            });
+        });
+    </script>
+{% endblock %}

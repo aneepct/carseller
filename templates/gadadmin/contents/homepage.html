@@ -1,0 +1,436 @@
+{% extends "templates/gadadmin/layout/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    {% include 'templates/gadadmin/layout/header.html' %}
+    {% include 'templates/gadadmin/layout/sidebar.html' %}
+
+        <div class="content-wrapper">
+            <section class="content-header">
+              <h1>
+                Homepage Contents
+                <small>Update homepage contents</small>
+              </h1>
+              <ol class="breadcrumb">
+                <li><a href="/gadadmin/dashboard">
+                    <i class="fa fa-dashboard"></i>
+                    Home</a>
+                </li>
+                <li class="active">Setup Homepage Contents</li>
+              </ol>
+            </section>
+
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if messages %}
+                              {% for message in messages %}
+                                <div class="alert
+                                    {% if message.tags == 'error' %}
+                                        alert-danger
+                                    {% else %}
+                                        alert-{{ message.tags }}
+                                    {% endif %}
+                                    alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    {{ message }}
+                                </div>
+                              {% endfor %}
+                          {% endif %}
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">
+                                    Homepage contents
+                                </h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body pad">
+                                <form
+                                    action="/gadadmin/homepage_content/{{ city_name }}"
+                                    method="post"
+                                >
+                                    {% csrf_token %}
+
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <select class="form-control select2"
+                                                onchange="changeContent(this)">
+                                            {% for city in cities %}
+                                                <option
+                                                    {% if city.name == city_name %}
+                                                        selected="selected"
+                                                    {% endif %}
+                                                >
+                                                    {{ city.name }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 1 </label>
+                                        <textarea id="editor"
+                                                  name="home_section_1"
+                                                  rows="10" cols="80">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 2 (1) </label>
+                                        <textarea id="editor1"
+                                                  name="home_section_2_1"
+                                                  rows="10" cols="80">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_2_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 2 (2) </label>
+                                        <textarea id="editor2"
+                                                  name="home_section_2_2"
+                                                  rows="10" cols="80">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_2_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 2 (3) </label>
+                                        <textarea id="editor3"
+                                                  name="home_section_2_3"
+                                                  rows="10" cols="80">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_2_3' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 2 (4) </label>
+                                        <textarea id="editor4"
+                                                  name="home_section_2_4"
+                                                  rows="10" cols="80">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_2_4' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 3 </label>
+                                        <textarea id="editor5"
+                                                  name="home_section_3"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_3' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 4 (1) </label>
+                                        <textarea id="editor6"
+                                                  name="home_section_4_1"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_4_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label> Home Section 4 (2) </label>
+                                        <textarea id="editor7"
+                                                  name="home_section_4_2"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_4_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 5 (1) </label>
+                                        <textarea id="editor8"
+                                                  name="home_section_5_1"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_5_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 5 (2) </label>
+                                        <textarea id="editor9"
+                                                  name="home_section_5_2"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_5_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 5 (3) </label>
+                                        <textarea id="editor10"
+                                                  name="home_section_5_3"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_5_3' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 5 (4) </label>
+                                        <textarea id="editor11"
+                                                  name="home_section_5_4"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_5_4' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 5 (5) </label>
+                                        <textarea id="editor12"
+                                                  name="home_section_5_5"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_5_5' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 5 (6) </label>
+                                        <textarea id="editor13"
+                                                  name="home_section_5_6"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_5_6' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 5 (7) </label>
+                                        <textarea id="editor14"
+                                                  name="home_section_5_7"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_5_7' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 6 (1) </label>
+                                        <textarea id="editor15"
+                                                  name="home_section_6_1"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_6_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 6 (2) </label>
+                                        <textarea id="editor16"
+                                                  name="home_section_6_2"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_6_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 7 </label>
+                                        <textarea id="editor17"
+                                                  name="home_section_7_1"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_7_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 8 </label>
+                                        <textarea id="editor18"
+                                                  name="home_section_8_1"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_8_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Section 9 </label>
+                                        <textarea id="editor19"
+                                                  name="home_section_9"
+                                                  rows="1" cols="1">
+                                            {% if homepage_content %}
+                                                {% for content in homepage_content %}
+                                                    {% if content.name == 'home_section_9' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- /.col -->
+                                        <div class="col-xs-4 col-md-2">
+                                          <button type="submit"
+                                                  class="btn btn-primary
+                                                   btn-block
+                                                   btn-flat">Save</button>
+                                        </div>
+                                          <div class="col-md-2">
+                                              <a href="/gadadmin/dashboard"
+                                                class="
+                                                btn
+                                                btn-danger
+                                                btn-block
+                                                btn-flat pull-right"
+                                            >
+                                                Cancel
+                                            </a>
+                                          </div>
+                                        <!-- /.col -->
+                                      </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    {% include 'templates/gadadmin/layout/footer.html' %}
+
+{% endblock %}
+
+{% block page_script %}
+    <script>
+        $(function () {
+            CKEDITOR.replace('editor');
+            CKEDITOR.replace('editor1');
+            CKEDITOR.replace('editor2');
+            CKEDITOR.replace('editor3');
+            CKEDITOR.replace('editor4');
+            CKEDITOR.replace('editor5');
+            CKEDITOR.replace('editor6');
+            CKEDITOR.replace('editor7');
+            CKEDITOR.replace('editor8');
+            CKEDITOR.replace('editor9');
+            CKEDITOR.replace('editor10');
+            CKEDITOR.replace('editor11');
+            CKEDITOR.replace('editor12');
+            CKEDITOR.replace('editor13');
+            CKEDITOR.replace('editor14');
+            CKEDITOR.replace('editor15');
+            CKEDITOR.replace('editor16');
+            CKEDITOR.replace('editor17');
+            CKEDITOR.replace('editor18');
+            CKEDITOR.replace('editor19');
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        })
+
+        function changeContent(city) {
+            console.log(city.value, '/gadadmin/homepage_content/'+city.value);
+            window.location.replace('/gadadmin/homepage_content/'+city.value)
+        }
+    </script>
+{% endblock %}

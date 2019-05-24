@@ -1,0 +1,21 @@
+{% extends "templates/gadadmin/layout/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    {% include 'templates/gadadmin/layout/header.html' %}
+    {% include 'templates/gadadmin/layout/sidebar.html' %}
+
+    <div class="content-wrapper">
+        <section class="content-header">
+          <h1>
+            Dashboard
+            <small>Control panel</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+          </ol>
+        </section>
+    </div>
+
+    {% include 'templates/gadadmin/layout/footer.html' %}
+{% endblock %}

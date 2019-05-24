@@ -2,81 +2,23 @@
 {% block content %}
 {% load staticfiles %}
 
-<div class="top-head bg-black">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-end">                    
-                <ul class="list-inline">
-                    <li class="list-inline-item">
-                        <a href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </li>
-                </ul>       
-            </div>
-        </div> 
-    </div>
-</div>
-
-<div class="menuWrap">
-    <div class="container">
-        <div class="row">
-            <div class="col">                    
-                    <a class="navbar-brand" href="#">
-                        <img src={% static 'frontend/img/main-logo.png' %} alt="logo">
-                    </a>                    
-            </div>
-            <div class="col d-flex align-items-center justify-content-end">                    
-                <div class="menu">
-                    <ul class="menuList">
-                        <li class="item active">
-                            <a class="nav-link" href="#">Home </a>
-                        </li>
-                        <li class="item">
-                            <a class="nav-link" href="#">Service</a>
-                        </li>
-                        <li class="item">
-                            <a class="nav-link" href="#">About us</a>
-                        </li>
-
-                        <li class="item">
-                            <a class="nav-link" href="#">Contact Us</a>
-                        </li>
-                        
-                        
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{% include 'templates/layout/header.html' %}
 
 <div class="slide">
     <img src={% static 'frontend/img/slider-1.png' %} alt="">
     <div class="textWrap">
-        <h1> Lorem Ipsum </h1>
-        <h2>is simply dummy text</h2>
-        <button type="button" class="btn btn-primary">READ MORE</button>
+        {% if homepage_content %}
+            {% for content in homepage_content %}
+                {% if content.name == 'home_section_1' %}
+                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                    <button type="button" class="btn btn-primary">READ MORE</button>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <h1> Lorem Ipsum </h1>
+            <h2>is simply dummy text</h2>
+            <button type="button" class="btn btn-primary">READ MORE</button>
+        {% endif %}
     </div>
 </div>
 <div class="bg-light-gray">
@@ -86,20 +28,33 @@
             <div class="boxWrap">
                 <div class="box">
                     <img src={% static 'frontend/img/icon-1.png' %} alt="icon-1">
-                    <h3> Used Car Buy</h3>
-                    <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
-                    The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_2_1' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
                 <div class="box">
                     <img src={% static 'frontend/img/icon-2.png' %} alt="icon-1">
-                    <h3> Accident cars we buy </h3>
-                    <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
-                    The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_2_2' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
                 <div class="box">
                     <img src={% static 'frontend/img/icon-3.png' %} alt="icon-1">
-                    <h3> Engine or Gear </h3>
-                    <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_2_3' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>                  
             </div>
@@ -112,10 +67,13 @@
         <div class="row justify-content-center">
             <div class="col-md-9 col-xs-12">                    
                 <div class="big-title text-center">
-                    <h2>Lorem Ipsum is simply dummy text</h2>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less 
-
-                        </p>
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_2_4' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -127,15 +85,25 @@
         <div class="row">
             <div class="col-md-6 col-sm-10 col-xs-12">
                 <div class="formBox">
-                    <h2>Lorem Ipsum is simply dummy text</h2>
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_3' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Marke</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Alpina</option>
-                            <option>Alpina2</option>
-                            <option>Alpina3</option>
-                            <option>Alpina4</option>
-                            <option>Alpina5</option>
+                        <select class="form-control" name="car_brand"
+                                id="exampleFormControlSelect1"
+                                onchange="getCarModels(this)"
+                        >
+                            <option>Select Car Brand</option>
+                            {% if car_brands %}
+                                {% for car_brand in car_brands %}
+                                    <option value="{{ car_brand.id }}">{{ car_brand.name }}</option>
+                                {% endfor %}
+                            {% endif %}
                         </select>
                     </div>
                     <div class="form-group">
@@ -166,10 +134,13 @@
         <div class="row">
             <div class="col-12">                    
                 <div class="big-title">
-                    <h2>Lorem Ipsum is simply dummy text</h2>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less 
-
-                        </p>
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_4_1' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -177,18 +148,13 @@
         <div class="row">
                 <div class="col-12">                    
                     <div class="small-title">
-                        <h4>Lorem Ipsum is simply dummy text</h4>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-
-                        </p>
-
-                        <p>
-                            Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-                        </p>
-
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-                        </p>
+                        {% if homepage_content %}
+                            {% for content in homepage_content %}
+                                {% if content.name == 'home_section_4_2' %}
+                                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
 
                     </div>
 
@@ -213,9 +179,13 @@
         <div class="row">
             <div class="col-12">                    
                 <div class="big-title">
-                    <h2>Lorem Ipsum is simply dummy text</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.        
-                    </p>
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_5_1' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -224,27 +194,39 @@
             <div class="col-sm-4">
                 <div class="box">
                     <img src={% static 'frontend/img/icon-5.png' %} alt="">
-                    <h3> Used car buying</h3>
-                    <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
-                    The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_5_2' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>    
             </div>                
 
             <div class="col-sm-4">
                 <div class="box">
                     <img src={% static 'frontend/img/icon-4.png' %} alt="">
-                    <h3> Engnine faillure car buy </h3>
-                    <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
-                    The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_5_3' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>    
             </div>                
 
             <div class="col-sm-4">
                 <div class="box">
                     <img src={% static 'frontend/img/icon-5.png' %} alt="">
-                    <h3> Gear box car buy</h3>
-                    <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
-                    The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_5_4' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>    
             </div>    
         </div>
@@ -253,27 +235,39 @@
                 <div class="col-sm-4">
                     <div class="box">
                         <img src={% static 'frontend/img/icon-10.png' %} alt="">
-                        <h3> Accident car buy </h3>
-                        <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
-                        The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                        {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_5_5' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                     </div>    
                 </div>                
 
                 <div class="col-sm-4">
                     <div class="box">
                         <img src={% static 'frontend/img/icon-16.png' %} alt="">
-                        <h3> Jeep buy</h3>
-                        <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
-                        The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                        {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_5_7' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                     </div>    
                 </div>                
 
                 <div class="col-sm-4">
                     <div class="box">
                         <img src={% static 'frontend/img/icon-8.png' %} alt="">
-                        <h3> Truck buy</h3>
-                        <p>It is a long established fact that a reader will be distracted by the retadable content of a page when looking at its layout. 
-                        The point of using Lorem Ipsum is that it has a more-or-less   </p> 
+                        {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_5_7' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                     </div>    
                 </div>    
             </div>
@@ -286,23 +280,23 @@
             <div class="row justify-content-end">
                 <div class="col-md-6 col-xs-12">
                         <div class="big-title">
-                            <h2>Lorem Ipsum is simply dummy text</h2>
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                            </p>
+                            {% if homepage_content %}
+                                {% for content in homepage_content %}
+                                    {% if content.name == 'home_section_6_1' %}
+                                        {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
 
                         <div class="small-title">
-                            <h4>Lorem Ipsum is simply dummy text</h4>
-                            <p>
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-                            </p>
-                            <p>
-                                Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. 
-                            </p>
-                            <p>                                            
-                                Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                            </p>
+                            {% if homepage_content %}
+                                {% for content in homepage_content %}
+                                    {% if content.name == 'home_section_6_2' %}
+                                        {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                 </div>
             </div>
@@ -314,10 +308,13 @@
         <div class="row text-center">
             <div class="col-12">
                 <div class="big-title">
-                    <h2>Aktuelles aus dem Magazina</h2>
-                    <p>
-                        There are many variations of passages of Lorem Ipsum available.
-                    </p>
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_7_1' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -405,10 +402,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="whiteText">
-                    <h3>Lorem Ipsum is simply dummy text</h3>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    </p>
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_8_1' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -474,16 +474,13 @@
         <div class="row">
             <div class="col-md-6 col-xs-12">
                 <div class="big-title">
-                    <h2>Your partner in the car change</h2>
-                    <p>
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. 
-                    </p>
-                    <p>
-                        Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. 
-                    </p>
-                    <p>                                    
-                        Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. 
-                    </p>
+                    {% if homepage_content %}
+                        {% for content in homepage_content %}
+                            {% if content.name == 'home_section_9' %}
+                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -491,140 +488,42 @@
 </div>
 
 <div class="padding-TB-50 bg-light-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <div class="contact-title">
-                        <h2>CONTACT US</h2>
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable 
-                        </p>                                                                
-                    </div>
-                </div>
-            </div>
-
-            <div class="row contact">
-                <div class="col-12">
-                    <div class="form">                                
-                        <p class="feelfree"> FEEL FREE TO SEND US A MESSAGE </p>    
-                        
-
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="firstName">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name">                  
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="lastName">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="last Name">  
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="youremail">Your Email</label>
-                                <input type="email" class="form-control" id="yourEmail" placeholder="Your Email">  
-                            </div>
-                        </div>
-
-                        <div class="form-group message">
-                            <label for="yourMessage">Your Message</label>
-                            <textarea class="form-control" id="yourMessage" rows="4" placeholder="Your Message"></textarea>
-                        </div>
-
-                        <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary">Send Message</button>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-    <div class="bg-black footer padding-TB-30">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="footBox one">
-                        <img src={% static 'frontend/img/white-logo.png' %} alt="">
-                        <p>
-                            Duis aute irure reprehend voluptate velit ese acium fugiat nula pariatur exceptus ipsum dolor sit amet consectetur adipisic elita sed eiusmod tempor.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="footBox">
-                        <h4>Contact Info</h4>
-                        <div class="footIconText">                                
-                            <div class="footicon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="foottext">
-                                <p>
-                                    Fairview Ave, </br>
-                                    El Monte,  </br>
-                                    CA, 91732
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="footIconText">                                
-                            <div class="footicon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="foottext">
-                                <a href="">
-                                    0800 000 8293
-                                </a>
-                            </div>
-                        </div>
-
-
-                        <div class="footIconText">                                
-                            <div class="footicon">
-                                <i class="far fa-envelope"></i>
-                            </div>
-                            <div class="foottext">
-                                <a href="#">
-                                    support@gebrauchtauto.com
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="footBox">
-                        <h4>Recent Blog</h4>
-
-                        <div class="footblogpost">
-                            <div class="postImg">
-                                <img src={% static 'frontend/img/small-blog-1.png' %} alt="blog">
-                            </div>
-                            <div class="text">
-                                <a href="#"> Blue Bottle butcher scenester</a>
-                                <p class="date"> December 28, 2015 </p>
-                            </div>
-                        </div>
-
-                        <div class="footblogpost">
-                            <div class="postImg">
-                                <img src={% static 'frontend/img/small-blog-2.png' %} alt="blog">
-                            </div>
-                            <div class="text">
-                                <a href="#"> Blue Bottle butcher scenester</a>
-                                <p class="date"> December 28, 2015 </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include 'templates/layout/contact.html' %}
 </div>
 
+
+    {% include 'templates/layout/footer.html' %}
+</div>
+
+{% endblock %}
+
+{% block page_script %}
+    <script>
+        $(function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        });
+
+        function showPosition(position) {
+            console.log(position);
+            {#x.innerHTML = "Latitude: " + position.coords.latitude + #}
+            {#"<br>Longitude: " + position.coords.longitude;#}
+        }
+
+        function getCarModels(carModelId){
+            console.log(carModelId.value);
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(JSON.parse(JSON.parse(this.responseText)));
+                }
+            };
+            xhttp.open("GET", "/get_car_models/"+carModelId.value, true);
+            xhttp.send();
+        }
+    </script>
 {% endblock %}

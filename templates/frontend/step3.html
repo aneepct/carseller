@@ -1,0 +1,368 @@
+{% extends "templates/layout/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+{% include 'templates/layout/header.html' %}
+
+    <div class="padding-TB-50 stapSection">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="progressbar">
+                        <li class="active"> <h4> Choose your vehicle </h4> </li>
+                        <li class="active"> <h4> Information about  vehicle and condition </h4> </li>
+                        <li> <h4>Your online rating </h4> </li>
+                    </ul>
+                    <div class="small-title text-center">
+                        {% if stepthree_content %}
+                            {% for content in stepthree_content %}
+                                {% if content.name == 'stepthree_section_1' %}
+                                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="padding-TB-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-10 col-xs-12">
+                    <div class="formBox textBlack">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Address</label>
+                            <textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">First given name</label>
+                            <input type="text" class="form-control" placeholder="E-mail address"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Surname</label>
+                            <input type="text" class="form-control" placeholder="E-mail address"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Phone</label>
+                            <input type="text" class="form-control" placeholder="E-mail address"/>
+                        </div>
+
+                        <button type="button" class="btn btn-primary">Jetzt kostenlos bewerten</button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-10 col-xs-12">
+                    <div class="gmailBox">
+                        {% if stepthree_content %}
+                            {% for content in stepthree_content %}
+                                {% if content.name == 'stepthree_section_2' %}
+                                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        <img src="{% static 'frontend/img/gmail.png' %}" alt="gmail">
+
+                        <button type="button" class="btn btn-primary"> Go Directly to Gmail </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="padding-TB-75 bg-black appointmentSection">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-12">
+                        <div class="title">
+                            {% if stepthree_content %}
+                                {% for content in stepthree_content %}
+                                    {% if content.name == 'stepthree_section_3_1' %}
+                                        {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="box">
+                            <img src="{% static 'frontend/img/red-car-icon.png' %}" alt="">
+                            <div class="textBox">
+                                {% if stepthree_content %}
+                                {% for content in stepthree_content %}
+                                    {% if content.name == 'stepthree_section_3_2' %}
+                                        {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="box">
+                            <img src="{% static 'frontend/img/red-car-icon.png' %}" alt="">
+                            <div class="textBox">
+                                {% if stepthree_content %}
+                                {% for content in stepthree_content %}
+                                    {% if content.name == 'stepthree_section_3_3' %}
+                                        {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="box">
+                            <img src="{% static 'frontend/img/red-car-icon.png' %}" alt="">
+                            <div class="textBox">
+                                {% if stepthree_content %}
+                                    {% for content in stepthree_content %}
+                                        {% if content.name == 'stepthree_section_3_4' %}
+                                            {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+        <div class="padding-TB-75 textLeftRight">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            {% if stepthree_content %}
+                                {% for content in stepthree_content %}
+                                    {% if content.name == 'stepthree_section_4_1' %}
+                                        {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row padding-TB-30">
+                        <div class="col-md-6">
+                            <div class="imgBox">
+                                <img src="{% static 'frontend/img/cars.png' %}" alt="cars">
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <div class="textBox">
+                                {% if stepthree_content %}
+                                    {% for content in stepthree_content %}
+                                        {% if content.name == 'stepthree_section_4_2' %}
+                                            {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row padding-TB-30">
+                        <div class="col-md-6 d-flex align-items-center">
+                            <div class="textBox">
+                                {% if stepthree_content %}
+                                    {% for content in stepthree_content %}
+                                        {% if content.name == 'stepthree_section_4_3' %}
+                                            {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="imgBox">
+                                <img src="{% static 'frontend/img/cars2.png' %}" alt="cars">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row padding-TB-30">
+                        <div class="col-md-6">
+                            <div class="imgBox">
+                                <img src="{% static 'frontend/img/cars3.png' %}" alt="cars">
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <div class="textBox">
+                                {% if stepthree_content %}
+                                    {% for content in stepthree_content %}
+                                        {% if content.name == 'stepthree_section_4_4' %}
+                                            {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row padding-TB-30">
+                        <div class="col-12 text-center">
+                                <button type="button" class="btn btn-primary"> Rate now for free </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="big-title paddingT-0">
+                            {% if stepthree_content %}
+                                {% for content in stepthree_content %}
+                                    {% if content.name == 'stepthree_section_5' %}
+                                        {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+    <div class="bg-multycar bgImage padding-TB-50 textWhite">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-8">
+                    <div class="callOut">
+                        {% if stepthree_content %}
+                            {% for content in stepthree_content %}
+                                {% if content.name == 'stepthree_section_6' %}
+                                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 align-items-center d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary"> contact Us </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="padding-TB-50 batchSection">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-4 text-center">
+                    <img src="{% static 'frontend/img/batch.png' %}" alt="">
+                </div>
+
+                <div class="col-md-4 d-flex align-items-center">
+                    <div class="textBox">
+                        {% if stepthree_content %}
+                            {% for content in stepthree_content %}
+                                {% if content.name == 'stepthree_section_7_1' %}
+                                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-4 d-flex align-items-center">
+                    <div class="textBox">
+                        {% if stepthree_content %}
+                            {% for content in stepthree_content %}
+                                {% if content.name == 'stepthree_section_7_2' %}
+                                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% include 'templates/layout/footer.html' %}
+
+{% endblock %}
+
+{% block page_script %}
+    <script>
+        $(function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        });
+
+        function showPosition(position) {
+            console.log(position);
+            {#x.innerHTML = "Latitude: " + position.coords.latitude + #}
+            {#"<br>Longitude: " + position.coords.longitude;#}
+        }
+
+        function getCarModels(carModelId){
+            console.log(carModelId.value);
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(JSON.parse(JSON.parse(this.responseText)));
+                }
+            };
+            xhttp.open("GET", "/get_car_models/"+carModelId.value, true);
+            xhttp.send();
+        }
+
+        $(document).ready(function() {
+
+            $("#testimonial").owlCarousel({
+                items : 2,
+            });
+        });
+    </script>
+{% endblock %}
