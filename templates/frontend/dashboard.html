@@ -84,46 +84,50 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-10 col-xs-12">
-                <div class="formBox">
-                    {% if homepage_content %}
-                        {% for content in homepage_content %}
-                            {% if content.name == 'home_section_3' %}
-                                {% autoescape off %}{{ content.contents }}{% endautoescape %}
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Marke</label>
-                        <select class="form-control" name="car_brand"
-                                id="exampleFormControlSelect1"
-                                onchange="getCarModels(this)"
-                        >
-                            <option>Select Car Brand</option>
-                            {% if car_brands %}
-                                {% for car_brand in car_brands %}
-                                    <option value="{{ car_brand.id }}">{{ car_brand.name }}</option>
-                                {% endfor %}
-                            {% endif %}
-                        </select>
+                <form action="/step_one" method="post">
+                    {% csrf_token %}
+                    <div class="formBox">
+                        {% if homepage_content %}
+                            {% for content in homepage_content %}
+                                {% if content.name == 'home_section_3' %}
+                                    {% autoescape off %}{{ content.contents }}{% endautoescape %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Marke</label>
+                            <select class="form-control" name="car_brand"
+                                    id="exampleFormControlSelect1"
+                                    onchange="getCarModels(this)"
+                            >
+                                <option>Select Car Brand</option>
+                                {% if car_brands %}
+                                    {% for car_brand in car_brands %}
+                                        <option value="{{ car_brand.id }}">{{ car_brand.name }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Modell</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Modell 1</option>
+                                <option>Modell 2</option>
+                                <option>Modell 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Erstzulassung</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Erstzulassung 1</option>
+                                <option>Erstzulassung 2</option>
+                                <option>Erstzulassung 3</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Jetzt
+                            kostenlos bewerten</button>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Modell</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Modell 1</option>
-                            <option>Modell 2</option>
-                            <option>Modell 3</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Erstzulassung</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Erstzulassung 1</option>
-                            <option>Erstzulassung 2</option>
-                            <option>Erstzulassung 3</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn btn-primary">Jetzt kostenlos bewerten</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>      
