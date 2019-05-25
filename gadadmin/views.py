@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from contentmanager.models import (
     HomepageContent, StepOne, StepTwo, StepThree, City)
 
@@ -38,7 +38,12 @@ def login_view(request):
 
 @login_required(login_url='/gadadmin/login')
 def dashboard(request):
-    return render(request, 'templates/gadadmin/index.html')
+    city_count = City.objects.all().count()
+    context = {
+        "city_count": city_count
+    }
+
+    return render(request, 'templates/gadadmin/index.html', context)
 
 
 @login_required(login_url='/gadadmin/login')

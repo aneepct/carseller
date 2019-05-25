@@ -15,6 +15,52 @@
             <li class="active">Dashboard</li>
           </ol>
         </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-lg-3 col-xs-6">
+                      <!-- small box -->
+                      <div class="small-box bg-aqua">
+                        <div class="inner">
+                          <h3>150</h3>
+
+                          <p>Contents</p>
+                        </div>
+                        <div class="icon">
+                          <i class="fa fa-files-o"></i>
+                        </div>
+                        <a href="/gadadmin/homepage_content/default" class="small-box-footer">
+                          More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                      <!-- small box -->
+                      <div class="small-box bg-green">
+                        <div class="inner">
+                          <h3>
+                              {% if city_count > 0 %}
+                                {{ city_count }}
+                              {% else %}
+                                0
+                              {% endif %}
+                          </h3>
+
+                          <p>Cities</p>
+                        </div>
+                        <div class="icon">
+                          <i class="fa fa-map-signs"></i>
+                        </div>
+                        <a href="/gadadmin/cities_page" class="small-box-footer">
+                          More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     {% include 'templates/gadadmin/layout/footer.html' %}
