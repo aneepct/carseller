@@ -72,6 +72,16 @@
                 <i class="fa fa-map-signs"></i>Cities
             </a>
         </li>
+
+        <li class="
+            {% if request.path == '/gadadmin/cars_page' or request.path == '/gadadmin/import_cars' %}
+                active
+            {% endif %}"
+        >
+            <a href="/gadadmin/cars_page">
+                <i class="fa fa-car"></i>Cars
+            </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

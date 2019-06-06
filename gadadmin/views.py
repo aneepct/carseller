@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from contentmanager.models import (
     HomepageContent, StepOne, StepTwo, StepThree, City)
+from frontend.models import (
+    CarBrand, CarModel, CarYear, CarDesign, CarTrim, CarType
+)
 
 
 @login_required(login_url='/gadadmin/login')
@@ -52,6 +55,35 @@ def cities_page(request):
 
     context = {"cities": cities}
     return render(request, 'templates/gadadmin/cities.html', context)
+
+
+@login_required(login_url='/gadadmin/login')
+def cars_page(request):
+    cars = CarBrand.objects.all()
+
+    cars_list = []
+
+    for car in cars:
+        car_data = {}
+        car_data["brand"] = car.name
+        car_data["model"] = car.get_models
+        cars_list.append(car_data)
+
+    context = {
+        "cars": cars_list
+    }
+
+    return render(request, 'templates/gadadmin/cars.html', context)
+
+
+@login_required(login_url='/gadadmin/login')
+def import_cars(request):
+    return HttpResponseRedirect("/gadadmin/cars_page")
+
+
+@login_required(login_url='/gadadmin/login')
+def remove_car(request, car_brand_id):
+    return HttpResponseRedirect("/gadadmin/cars_page")
 
 
 @login_required(login_url='/gadadmin/login')

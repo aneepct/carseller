@@ -110,18 +110,21 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Modell</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>Modell 1</option>
-                                <option>Modell 2</option>
-                                <option>Modell 3</option>
+                            <select class="form-control car-model"
+                                    name="car_model"
+                                    onchange="getCarYears(this)"
+                                    id="exampleFormControlSelect1"
+                                    disabled="disabled">
+                                <option>Modell auswählen</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Erstzulassung</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>Erstzulassung 1</option>
-                                <option>Erstzulassung 2</option>
-                                <option>Erstzulassung 3</option>
+                            <select class="form-control car-year"
+                                    id="exampleFormControlSelect1"
+                                    disabled="disabled"
+                            >
+                                <option value="">Erstzulassung auswählen</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Jetzt
@@ -503,30 +506,78 @@
 
 {% block page_script %}
     <script>
-        $(function () {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
+        var getPosition = function (options) {
+            return new Promise(function (resolve, reject) {
+                navigator.geolocation.getCurrentPosition(resolve, reject, options);
+            });
+        }
+
+        getPosition()
+        .then((position) => {
+            console.log(position);
+        })
+        .catch(async (err) => {
+            var cities = JSON.parse(`{{ cities }}`.replace(/&quot;/g,'"'));
+            var current_city_location = `{{ current_city_location }}`;
+            console.log(current_city_location);
+            if (current_city_location == 'False'){
+                var _html = '<form action="/update_location_city" method="get" id="changeLocation">';
+                _html += '<select name="city_id" id="cityInput">';
+                _html += '<option value="">Select City</option>';
+                for(i=0; i < cities.length; i++){
+                    _html += '<option value="'+cities[i].id+'">'+cities[i].name+'</option>';
+                }
+                _html += '</select>';
+                _html += '</form>';
+                const {value: formValues} = await Swal.fire({
+                    title: 'Enable to get your location!',
+                    type: 'warning',
+                    html: _html,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    preConfirm: () => {
+                        window.location.replace('/update_location_city/'+document.getElementById('cityInput').value)
+                        console.log(document.getElementById('cityInput').value);
+                    }
+                });
             }
         });
 
-        function showPosition(position) {
-            console.log(position);
-            {#x.innerHTML = "Latitude: " + position.coords.latitude + #}
-            {#"<br>Longitude: " + position.coords.longitude;#}
-        }
-
         function getCarModels(carModelId){
-            console.log(carModelId.value);
 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log(JSON.parse(JSON.parse(this.responseText)));
+                    var models = JSON.parse(this.responseText);
+                    var _html = '<option value="">Modell auswählen</option>';
+                    for (i = 0; i < models.length; i++) {
+                        _html += '<option value='+models[i].id+'>'+models[i].name+'</option>';
+                    }
+
+                    $(".car-model").html(_html);
+                    $(".car-model").prop("disabled", false);
                 }
             };
             xhttp.open("GET", "/get_car_models/"+carModelId.value, true);
+            xhttp.send();
+        }
+
+        function getCarYears(carYearId){
+            console.log(carYearId.value);
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var years = JSON.parse(this.responseText);
+                    var _html = '<option value="">Erstzulassung auswählen</option>';
+                    for (i = 0; i < years.length; i++) {
+                        _html += '<option value='+years[i].id+'>'+years[i].name+'</option>';
+                    }
+                    $(".car-year").html(_html);
+                    $(".car-year").prop("disabled", false);
+                }
+            };
+            xhttp.open("GET", "/get_car_years/"+carYearId.value, true);
             xhttp.send();
         }
     </script>

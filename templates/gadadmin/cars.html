@@ -1,0 +1,105 @@
+{% extends "templates/gadadmin/layout/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    {% include 'templates/gadadmin/layout/header.html' %}
+    {% include 'templates/gadadmin/layout/sidebar.html' %}
+
+    <div class="content-wrapper">
+        <section class="content-header">
+          <h1>
+            Cars
+            <small>Manage Car</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/gadadmin/dashboard"><i class="fa fa-dashboard"></i>
+                Home</a></li>
+            <li class="active">Cars</li>
+          </ol>
+        </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    {% if messages %}
+                          {% for message in messages %}
+                            <div class="alert
+                                {% if message.tags == 'error' %}
+                                    alert-danger
+                                {% else %}
+                                    alert-{{ message.tags }}
+                                {% endif %}
+                                alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                {{ message }}
+                            </div>
+                          {% endfor %}
+                      {% endif %}
+                    <div class="box">
+                        <div class="box-header with-border">
+                          <h3 class="box-title">Manage Cars</h3>
+
+                            <div class="box-tools">
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <li>
+                                        <a href="/gadadmin/import_cars"
+                                           class="btn btn-sm btn-warning">
+                                            <i class="fa fa-plus"></i>
+                                            Import
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/gadadmin/dashboard"
+                                           class="btn btn-sm btn-primary">
+                                            <i class="fa fa-backward"></i>
+                                            Back
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive">
+                          <table id="cars" class="table table-bordered">
+                              <thead>
+                                <tr>
+                                    <th>Brand</th>
+                                    <th>Model</th>
+                                    <th>Year</th>
+                                    <th>Design</th>
+                                    <th>Trim</th>
+                                    <th>Type</th>
+                                    <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% if cars %}
+                                        {% for car in cars %}
+                                            {{ car.brand }}
+																						{% for car_m in car.model %}
+																								{{ car_m.name }}
+																						{% endfor %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <p>No cities are available.</p>
+                                    {% endif %}
+                              </tbody>
+                          </table>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    {% include 'templates/gadadmin/layout/footer.html' %}
+
+{% endblock %}
+
+{% block page_script %}
+    <script>
+      $(function () {
+          $('#cars').DataTable();
+      });
+    </script>
+{% endblock %}
