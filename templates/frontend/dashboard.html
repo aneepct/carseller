@@ -97,7 +97,7 @@
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Marke</label>
                             <select class="form-control" name="car_brand"
-                                    id="exampleFormControlSelect1"
+                                    id="car-brand"
                                     onchange="getCarModels(this)"
                             >
                                 <option>Select Car Brand</option>
@@ -123,6 +123,7 @@
                             <select class="form-control car-year"
                                     id="exampleFormControlSelect1"
                                     disabled="disabled"
+                                    name="car_year"
                             >
                                 <option value="">Erstzulassung auswählen</option>
                             </select>
@@ -506,6 +507,12 @@
 
 {% block page_script %}
     <script>
+        var car_session_data = JSON.parse(`{{ car_session_data }}`.replace
+        (/&#39;/g,'"'));
+        console.log(car_session_data);
+        $("#car-model").val(car_session_data['car_model']);
+        $("#car-brand").val(car_session_data['car_brand']);
+        $("#car-year").val(car_session_data['car_year']);
         var getPosition = function (options) {
             return new Promise(function (resolve, reject) {
                 navigator.geolocation.getCurrentPosition(resolve, reject, options);

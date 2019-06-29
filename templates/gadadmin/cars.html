@@ -76,9 +76,9 @@
                                 {% if cars %}
                                         {% for car in cars %}
                                             {{ car.brand }}
-																						{% for car_m in car.model %}
-																								{{ car_m.name }}
-																						{% endfor %}
+                                                                                {% for car_m in car.model %}
+                                                                                        {{ car_m.name }}
+                                                                                {% endfor %}
                                         {% endfor %}
                                     {% else %}
                                         <p>No cities are available.</p>

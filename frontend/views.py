@@ -9,6 +9,13 @@ from contentmanager.models import (
 from .models import CarBrand, CarModel, CarYear
 
 
+def read_file(request):
+    f = open('/var/www/html/.well-known/pki-validation/2F3200EA6A9E9606DC07BFCC343C8D13.txt', 'r')
+    file_content = f.read()
+    f.close()
+    return HttpResponse(file_content, content_type="text/plain")
+
+
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
@@ -34,20 +41,25 @@ def index(request):
     else:
         city = City.objects.get(name="default")
         current_city_location = False
-    
+
     cities = City.objects.all()
     car_brands = CarBrand.objects.all()
     homepage_content = HomepageContent.objects.filter(city=city)
+    car_data = {}
+    if request.session.get('car_data', False):
+        car_data = request.session['car_data']
+
     if not homepage_content:
         city = City.objects.get(name="default")
         homepage_content = HomepageContent.objects.filter(city=city)
-    
+
     serializer = CitySerializer(cities, many=True)
     context = {
         "homepage_content": homepage_content,
         "car_brands": car_brands,
         "cities": json.dumps(serializer.data),
-        "current_city_location": current_city_location
+        "current_city_location": current_city_location,
+        "car_session_data": car_data,
     }
 
     return render(request, 'templates/frontend/dashboard.html', context)
@@ -71,16 +83,29 @@ def update_location_city(request, city_id):
 
 
 def step_one(request):
-    city = City.objects.get(name="default")
-    car_brands = CarBrand.objects.all()
-    stepone_content = StepOne.objects.filter(city=city)
-    context = {
-        "stepone_content": stepone_content,
-        "car_brands": car_brands
-    }
+    if request.method == "POST":
+        car_data = request.POST
+        print(car_data)
+        car_session_data = {
+            "car_brand": car_data['car_brand'],
+            "car_model": car_data['car_model'],
+            "car_year": car_data['car_year']
+        }
 
-    return render(request, 'templates/frontend/step1.html', context)
+        request.session['car_data'] = car_session_data
 
+        city = City.objects.get(name="default")
+        car_brands = CarBrand.objects.all()
+        stepone_content = StepOne.objects.filter(city=city)
+        context = {
+            "stepone_content": stepone_content,
+            "car_brands": car_brands
+        }
+
+        return render(request, 'templates/frontend/step1.html', context)
+
+    else:
+        return HttpResponseRedirect("/")
 
 def step_two(request):
     city = City.objects.get(name="default")
