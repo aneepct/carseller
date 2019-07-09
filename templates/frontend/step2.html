@@ -36,36 +36,61 @@
                         <div class="formBox textBlack">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Design</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Alpina</option>
-                                    <option>Alpina2</option>
-                                    <option>Alpina3</option>
-                                    <option>Alpina4</option>
-                                    <option>Alpina5</option>
+                                <select class="form-control car-type"
+                                        name="car_type"
+                                        id="car_type"
+                                        disabled="disabled"
+                                        onchange="getCarBodyTypes(this)"
+                                        id="exampleFormControlSelect1">
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1"> The Model</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Modell 1</option>
-                                    <option>Modell 2</option>
-                                    <option>Modell 3</option>
+                                <select class="form-control car-body-type"
+                                    name="car_body_type"
+                                    id="car_body_type"
+                                    disabled="disabled"
+                                    onchange="getCarSubBodyTypes(this)"
+                                    id="exampleFormControlSelect1"
+                                >
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Type</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Erstzulassung 1</option>
-                                    <option>Erstzulassung 2</option>
-                                    <option>Erstzulassung 3</option>
+                                <select class="form-control car-body-sub-type"
+                                    name="car_body_sub_type"
+                                    id="car_body_sub_type"
+                                    disabled="disabled"
+                                    onchange="getCarKilometer()"
+                                    id="exampleFormControlSelect1"
+                                >
+
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">kilometre</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Erstzulassung 1</option>
-                                    <option>Erstzulassung 2</option>
-                                    <option>Erstzulassung 3</option>
+                                <select class="form-control kilometer"
+                                        id="exampleFormControlSelect1"
+                                        disabled="disabled"
+                                        name="kilometer">
+                                    <option value="0">Kilometer auswählen</option>
+                                    <option value="5000">Bis zu 5.000</option>
+                                    <option value="10000">Bis zu 10.000</option>
+                                    <option value="20000">Bis zu 20.000</option>
+                                    <option value="30000">Bis zu 30.000</option>
+                                    <option value="40000">Bis zu 40.000</option>
+                                    <option value="60000">Bis zu 60.000</option>
+                                    <option value="80000">Bis zu 80.000</option>
+                                    <option value="100000">Bis zu 100.000</option>
+                                    <option value="125000">Bis zu 125.000</option>
+                                    <option value="150000">Bis zu 150.000</option>
+                                    <option value="175000">Bis zu 175.000</option>
+                                    <option value="200000">Bis zu 200.000</option>
+                                    <option value="225000">Bis zu 225.000</option>
+                                    <option value="250000">Bis zu 250.000</option>
+                                    <option value="275000">Bis zu 275.000</option>
+                                    <option value="300000">Bis zu 300.000</option>
+                                    <option value="350000">Mehr als 300.000</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -469,6 +494,7 @@
 
 {% block page_script %}
     <script>
+        var car_data = JSON.parse(`{{ car_data }}`.replace(/&#39;/g,'"'));
         $(function () {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
@@ -495,6 +521,79 @@
             xhttp.open("GET", "/get_car_models/"+carModelId.value, true);
             xhttp.send();
         }
+
+        function getCarType() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var carTypeNode = $(".car-type");
+                    var carType = JSON.parse(this.responseText).wkda;
+                    console.log(carType);
+                    var _html = '<option value="">Bauform auswählen</option>';
+                    $.map(carType, function(value, index) {
+                        _html += '<option value='+index+'>'+value+'</option>';
+                    });
+                    carTypeNode.html(_html);
+                    carTypeNode.prop("disabled", false);
+                }
+            };
+
+            xhttp.open("GET", "http://142.93.166.157/getType" +
+                ".php?brand_id="+car_data['car_brand']+"&model_id="+car_data['car_model']+"&year_id="+car_data['car_year'],
+                true);
+            xhttp.send();
+        }
+
+        function getCarBodyTypes(typeId){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var carBodyTypeNode = $(".car-body-type");
+                    var carBodyType = JSON.parse(this.responseText).wkda;
+                    console.log(carBodyType);
+                    var _html = '<option value="">Typ auswählen</option>';
+                    $.map(carBodyType, function(value, index) {
+                        console.log(index);
+                        _html += '<option value='+encodeURIComponent(index)+'>'+value+'</option>';
+                    });
+                    carBodyTypeNode.html(_html);
+                    carBodyTypeNode.prop("disabled", false);
+                }
+            };
+
+            xhttp.open("GET", "http://142.93.166.157/getBodyType" +
+                ".php?brand_id="+car_data['car_brand']+"&model_id="+car_data['car_model']+"&year_id="+car_data['car_year']+"&type_id="+typeId.value,
+                true);
+            xhttp.send();
+        }
+
+        function getCarSubBodyTypes(typeSubId){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var carBodySubTypeNode = $(".car-body-sub-type");
+                    var carBodySubType = JSON.parse(this.responseText).wkda;
+                    console.log(carBodySubType);
+                    var _html = '<option value="">Typ auswählen</option>';
+                    $.map(carBodySubType, function(value, index) {
+                        _html += '<option value='+index+'>'+value+'</option>';
+                    });
+                    carBodySubTypeNode.html(_html);
+                    carBodySubTypeNode.prop("disabled", false);
+                }
+            };
+            var carTypeId = $(".car-type").val();
+            xhttp.open("GET", "http://142.93.166.157/getBodySubType" +
+                ".php?brand_id="+car_data['car_brand']+"&model_id="+car_data['car_model']+"&year_id="+car_data['car_year']+"&type_id="+encodeURIComponent(carTypeId)+"&body_type_id="+typeSubId.value,
+                true);
+            xhttp.send();
+        }
+
+        function getCarKilometer(){
+            $(".kilometer").prop("disabled", false);
+        }
+
+        getCarType();
 
         $(document).ready(function() {
 

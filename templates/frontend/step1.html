@@ -36,28 +36,31 @@
                     <div class="formBox textBlack">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Brand</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>Alpina</option>
-                                <option>Alpina2</option>
-                                <option>Alpina3</option>
-                                <option>Alpina4</option>
-                                <option>Alpina5</option>
+                            <select class="form-control car-brand" name="car_brand"
+                                    id="car-brand"
+                                    onchange="getCarModels(this)"
+                            >
+                                <option>Select Car Brand</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Model</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>Modell 1</option>
-                                <option>Modell 2</option>
-                                <option>Modell 3</option>
+                            <select class="form-control car-model"
+                                    name="car_model"
+                                    onchange="getCarYears(this)"
+                                    id="exampleFormControlSelect1"
+                                    disabled="disabled">
+                                <option>Modell auswählen</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Year</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>Erstzulassung 1</option>
-                                <option>Erstzulassung 2</option>
-                                <option>Erstzulassung 3</option>
+                            <select class="form-control car-year"
+                                    id="exampleFormControlSelect1"
+                                    disabled="disabled"
+                                    name="car_year"
+                            >
+                                <option value="">Erstzulassung auswählen</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Jetzt
@@ -383,24 +386,104 @@
             {#"<br>Longitude: " + position.coords.longitude;#}
         }
 
+        {#    var car_session_data = JSON.parse(`{{ car_session_data }}`.replace(/&#39;/g,'"'));#}
+        {#console.log(car_session_data);#}
+        {##}
+        {#$("#car-model").val(car_session_data['car_model']);#}
+        {#$("#car-brand").val(car_session_data['car_brand']);#}
+        {#$("#car-year").val(car_session_data['car_year']);#}
+        var getPosition = function (options) {
+            return new Promise(function (resolve, reject) {
+                navigator.geolocation.getCurrentPosition(resolve, reject, options);
+            });
+        }
+
+        getPosition()
+        .then((position) => {
+            console.log(position);
+        })
+        .catch(async (err) => {
+            var cities = JSON.parse(`{{ cities }}`.replace(/&quot;/g,'"'));
+            var current_city_location = `{{ current_city_location }}`;
+            console.log(current_city_location);
+            if (current_city_location == 'False'){
+                var _html = '<form action="/update_location_city" method="get" id="changeLocation">';
+                _html += '<select name="city_id" id="cityInput">';
+                _html += '<option value="">Select City</option>';
+                for(i=0; i < cities.length; i++){
+                    _html += '<option value="'+cities[i].id+'">'+cities[i].name+'</option>';
+                }
+                _html += '</select>';
+                _html += '</form>';
+                const {value: formValues} = await Swal.fire({
+                    title: 'Enable to get your location!',
+                    type: 'warning',
+                    html: _html,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    preConfirm: () => {
+                        window.location.replace('/update_location_city/'+document.getElementById('cityInput').value)
+                        console.log(document.getElementById('cityInput').value);
+                    }
+                });
+            }
+        });
+
         function getCarModels(carModelId){
-            console.log(carModelId.value);
 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log(JSON.parse(JSON.parse(this.responseText)));
+                    let carModelNode = $(".car-model");
+                    var carModels = JSON.parse(this.responseText).wkda;
+
+                    var _html = '<option value="">Modell auswählen</option>';
+                    $.map(carModels, function(value, index) {
+                        console.log(value, index);
+                        _html += '<option value='+index+'>'+value+'</option>';
+                    });
+                    carModelNode.html(_html);
+                    carModelNode.prop("disabled", false);
                 }
             };
-            xhttp.open("GET", "/get_car_models/"+carModelId.value, true);
+            xhttp.open("GET", "http://142.93.166.157/getModel.php?brand_id="+carModelId.value, true);
             xhttp.send();
         }
 
-        $(document).ready(function() {
+        function getCarYears(carYearId){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var carYearNode = $(".car-year");
+                    var carYears = JSON.parse(this.responseText).wkda;
+                    var _html = '<option value="">Erstzulassung auswählen</option>';
+                    $.map(carYears, function(value, index) {
+                        _html += '<option value='+index+'>'+value+'</option>';
+                    });
+                    carYearNode.html(_html);
+                    carYearNode.prop("disabled", false);
+                }
+            };
+            var carBrandId = $(".car-brand").val();
+            xhttp.open("GET", "http://142.93.166.157/getYear" +
+                ".php?brand_id="+carBrandId+"&model_id="+carYearId.value, true);
+            xhttp.send();
+        }
 
-            $("#testimonial").owlCarousel({
-                items : 2,
-            });
-        });
+        function getBrand() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                let carBrands = JSON.parse(this.responseText).wkda;
+                var _html = '<option>Select Car Brand</option>';
+                $.map(carBrands, function(value, index) {
+                    _html += '<option value='+index+'>'+value+'</option>';
+                });
+                $(".car-brand").html(_html);
+            }
+            xhttp.open("GET", "http://142.93.166.157/getBrand.php");
+            xhttp.send();
+        }
+
+        getBrand();
     </script>
 {% endblock %}

@@ -99,7 +99,10 @@ def step_one(request):
         stepone_content = StepOne.objects.filter(city=city)
         context = {
             "stepone_content": stepone_content,
-            "car_brands": car_brands
+            "car_brands": car_brands,
+            "car_brand": car_data['car_brand'],
+            "car_model": car_data['car_model'],
+            "car_year": car_data['car_year']
         }
 
         return render(request, 'templates/frontend/step1.html', context)
@@ -108,12 +111,22 @@ def step_one(request):
         return HttpResponseRedirect("/")
 
 def step_two(request):
+    car_data = request.POST
     city = City.objects.get(name="default")
     car_brands = CarBrand.objects.all()
     steptwo_content = StepTwo.objects.filter(city=city)
+    car_session_data = {
+        "car_brand": car_data['car_brand'],
+        "car_model": car_data['car_model'],
+        "car_year": car_data['car_year']
+    }
+
+    request.session['car_data'] = car_session_data
+
     context = {
         "steptwo_content": steptwo_content,
-        "car_brands": car_brands
+        "car_brands": car_brands,
+        "car_data": request.session['car_data']
     }
 
     return render(request, 'templates/frontend/step2.html', context)
