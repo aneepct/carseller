@@ -84,7 +84,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-10 col-xs-12">
-                <form action="/step_two" method="post">
+                <form action="/step_two" id="stepOne" method="post">
                     {% csrf_token %}
                     <div class="formBox">
                         {% if homepage_content %}
@@ -128,10 +128,11 @@
                                 <option value="">Erstzulassung auswählen</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Jetzt
+                    </form>
+                        <button type="submit" class="btn btn-primary"
+                                onclick="getValidate(event)">Jetzt
                             kostenlos bewerten</button>
                     </div>
-                </form>
             </div>
         </div>
     </div>      
@@ -606,5 +607,25 @@
         }
 
         getBrand();
+
+        function getValidate(e)
+        {
+            e.preventDefault();
+            let empty = false;
+            $("#stepOne select").each(function() {
+               if($(this).val() === ""){
+                   empty = true;
+               }
+            });
+            if(empty){
+                Swal.fire({
+                  type: 'error',
+                  title: 'Form error',
+                  text: 'All form fields are required.',
+                })
+            } else {
+                $("#stepOne").submit();
+            }
+        }
     </script>
 {% endblock %}

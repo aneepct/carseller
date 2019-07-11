@@ -1,6 +1,6 @@
 import json
 
-from django.shortcuts import render, HttpResponseRedirect, HttpResponse
+from django.shortcuts import (render, HttpResponseRedirect, HttpResponse)
 from rest_framework import serializers
 
 from django.http import JsonResponse
@@ -133,6 +133,24 @@ def step_two(request):
 
 
 def step_three(request):
+    car_data = request.POST
+    car_session_data = request.session['car_data']
+
+    step_two_car_session_data = {
+        "car_brand": car_session_data['car_brand'],
+        "car_model": car_session_data['car_model'],
+        "car_year": car_session_data['car_year'],
+        "car_type": car_data['car_type'],
+        "car_body_type": car_data['car_body_type'],
+        "car_body_sub_type": car_data['car_body_sub_type'],
+        "kilometer": car_data['kilometer'],
+        "user_email": car_data['user_email'],
+        "vehicle_type": car_data['vehicle_type'],
+        "user_message": car_data['user_message']
+    }
+
+    request.session['car_data'] = step_two_car_session_data
+
     city = City.objects.get(name="default")
     car_brands = CarBrand.objects.all()
     stepthree_content = StepThree.objects.filter(city=city)
@@ -142,3 +160,11 @@ def step_three(request):
     }
 
     return render(request, 'templates/frontend/step3.html', context)
+
+
+def submit_request(request):
+    request_data = request.POST
+    car_session_data = request.session['car_data']
+    return JsonResponse({
+        "req_data": request_data, "car_data": car_session_data
+    }, safe=False)

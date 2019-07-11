@@ -75,3 +75,26 @@ class CarType(models.Model):
 
     def __str__(self):              # __unicode__ on Python 2
         return str(self.name)
+
+
+class UserContactRequest(models.Model):
+    car_body_sub_type = models.CharField(max_length=255, null=True)
+    car_body_type = models.CharField(max_length=255, null=True)
+    car_brand = models.CharField(max_length=255, null=True)
+    car_model = models.CharField(max_length=255, null=True)
+    car_type = models.CharField(max_length=255, null=True)
+    car_year = models.CharField(max_length=255, null=True)
+    kilometer = models.CharField(max_length=255, null=True)
+    user_email = models.CharField(max_length=255, null=True)
+    user_message = models.CharField(max_length=255, null=True)
+    vehicle_type = models.CharField(max_length=255, null=True)
+    user_address = models.CharField(max_length=255, null=True)
+    user_firstname = models.CharField(max_length=255, null=True)
+    user_lastname = models.CharField(max_length=255, null=True)
+    user_phone = models.CharField(max_length=255, null=True)
+
+    class Meta:
+        db_table = 'user_contact_requests'
+
+    def __str__(self):              # __unicode__ on Python 2
+        return str(self.user_email)

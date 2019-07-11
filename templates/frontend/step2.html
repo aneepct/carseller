@@ -27,7 +27,7 @@
 </div>
 </div>
 
-<form action="/step_three" method="post">
+<form action="/step_three" method="post" id="stepTwo">
     {% csrf_token %}
     <div class="padding-TB-50">
         <div class="container">
@@ -95,7 +95,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">E-mail address</label>
-                                <input type="text" class="form-control" placeholder="E-mail address"/>
+                                <input type="email" name="user_email"
+                                       class="form-control"
+                                       placeholder="E-mail address"/>
                             </div>
                         </div>
                 </div>
@@ -103,19 +105,29 @@
                     <div class="formBox textBlack">
 
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1"> lable Here</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>Unfallwagen </option>
-                                <option>Unfallwagen </option>
-                                <option>Unfallwagen </option>
+                            <label for="exampleFormControlSelect1">
+                                Vehical Type</label>
+                            <select class="form-control"
+                                    name="vehicle_type"
+                                    id="exampleFormControlSelect1">
+                                <option>Select Vehicle Type</option>
+                                <option value="kein_unfallwagen">Kein Unfallwagen</option>
+                                <option value="unfallwagen">Unfallwagen</option>
+                                <option value="motorschaden">Motorschaden</option>
+                                <option value="getriebeschaden">Getriebeschaden</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">Message</label>
-                            <textarea class="form-control" name="" id="" cols="30" rows="9"></textarea>
+                            <label for="exampleFormControlSelect1"
+                            >Message</label>
+                            <textarea class="form-control" name="user_message" id=""
+                                      cols="30" rows="9"></textarea>
                         </div>
+                    </form>
 
-                        <button type="submit" class="btn btn-primary">Jetzt kostenlos
+                        <button type="submit" class="btn btn-primary"
+                                onclick="getValidate(event)">Jetzt
+                            kostenlos
                             bewerten</button>
                     </div>
                 </div>
@@ -123,7 +135,6 @@
             </div>
         </div>
     </div>
-</form>
 
 <div class="padding-TB-75 bg-black fourBoxSection">
 <div class="container leftIcon">
@@ -601,5 +612,26 @@
                 items : 2,
             });
         });
+
+        function getValidate(e)
+        {
+            e.preventDefault();
+            console.log('call test');
+            let empty = false;
+            $("#stepTwo select, #stepTwo input, #stepTwo textarea").each(function() {
+               if($(this).val() === ""){
+                   empty = true;
+               }
+            });
+            if(empty){
+                Swal.fire({
+                  type: 'error',
+                  title: 'Form error',
+                  text: 'All form fields are required.',
+                })
+            } else {
+                $("#stepTwo").submit();
+            }
+        }
     </script>
 {% endblock %}

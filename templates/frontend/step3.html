@@ -31,35 +31,44 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-10 col-xs-12">
-                    <form>
+                    <form id="stepThree" action="" method="post">
                         {% csrf_token %}
                         <div class="formBox textBlack">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Address</label>
-                                <textarea class="form-control" name="" id="" cols="30" rows="4"></textarea>
+                                <textarea class="form-control"
+                                          name="user_address" id="" cols="30"
+                                          rows="4"></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">First given name</label>
-                                <input type="text" class="form-control" placeholder="E-mail address"/>
+                                <input type="text" name="user_firstname"
+                                       class="form-control"
+                                       placeholder="First Name"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Surname</label>
-                                <input type="text" class="form-control" placeholder="E-mail address"/>
+                                <input type="text" name="user_lastname"
+                                       class="form-control"
+                                       placeholder="Last Name"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Phone</label>
-                                <input type="text" class="form-control" placeholder="E-mail address"/>
+                                <input type="text" name="user_phone"
+                                       class="form-control"
+                                       placeholder="Phone Number"/>
                             </div>
 
+                        </form>
+
                             <button class="btn
-                            btn-primary" id="submit">Jetzt
+                            btn-primary" onclick="getValidate(event)">Jetzt
                                 kostenlos
                                 bewerten</button>
                         </div>
-                    </form>
                 </div>
                 <div class="col-md-6 col-sm-10 col-xs-12">
                     <div class="gmailBox">
@@ -79,9 +88,6 @@
             </div>
         </div>
     </div>
-
-
-
 
     <div class="padding-TB-75 bg-black appointmentSection">
             <div class="container">
@@ -146,11 +152,8 @@
 
                 </div>
 
-
-
             </div>
         </div>
-
 
         <div class="padding-TB-75 textLeftRight">
                 <div class="container">
@@ -201,10 +204,7 @@
                                 <img src="{% static 'frontend/img/cars2.png' %}" alt="cars">
                             </div>
                         </div>
-
-
                     </div>
-
 
                     <div class="row padding-TB-30">
                         <div class="col-md-6">
@@ -225,7 +225,6 @@
                         </div>
                     </div>
 
-
                     <div class="row padding-TB-30">
                         <div class="col-12 text-center">
                                 <button type="button" class="btn btn-primary"> Rate now for free </button>
@@ -234,10 +233,6 @@
 
                 </div>
             </div>
-
-
-
-
 
             <div class="container">
                 <div class="row">
@@ -254,13 +249,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
 
     <div class="bg-multycar bgImage padding-TB-50 textWhite">
         <div class="container">
@@ -283,14 +271,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
 
     <div class="padding-TB-50 batchSection">
         <div class="container">
@@ -364,25 +344,55 @@
             xhttp.send();
         }
 
-        $("#submit").click(function(event) {
-          event.preventDefault();
-          Swal.fire({
-                title: 'Request submited please wait for confirmation email.',
-                type: 'success',
-                showCancelButton: true,
-                focusConfirm: false,
-                preConfirm: () => {
-                    window.location.replace('/')
-                }
-            });
-        });
-
-
         $(document).ready(function() {
 
             $("#testimonial").owlCarousel({
                 items : 2,
             });
+
+            $("#stepThree").submit(function(event){
+                  console.log('Submit');
+                    // Stop form from submitting normally
+                    event.preventDefault();
+
+                    /* Serialize the submitted form control values to be sent to the web server with the request */
+                    var formValues = $(this).serialize();
+
+                    // Send the form data using post
+                    $.post("/submit_request", formValues, function(data){
+                        // Display the returned data in browser
+                        console.log(data);
+                        Swal.fire({
+                            title: 'Request submited please wait for confirmation email.',
+                            type: 'success',
+                            showCancelButton: true,
+                            focusConfirm: false,
+                            preConfirm: () => {
+                                window.location.replace('/')
+                            }
+                        });
+                    });
+              });
         });
+
+        function getValidate(e)
+        {
+            e.preventDefault();
+            let empty = false;
+            $("#stepThree input, #stepThree textarea").each(function() {
+               if($(this).val() === ""){
+                   empty = true;
+               }
+            });
+            if(empty){
+                Swal.fire({
+                  type: 'error',
+                  title: 'Form error',
+                  text: 'All form fields are required.',
+                })
+            } else {
+                $("#stepThree").submit();
+            }
+        }
     </script>
 {% endblock %}
