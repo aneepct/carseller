@@ -2,6 +2,7 @@ import json
 
 from django.shortcuts import (render, HttpResponseRedirect, HttpResponse)
 from rest_framework import serializers
+from django.core.mail import EmailMessage
 
 from django.http import JsonResponse
 from contentmanager.models import (

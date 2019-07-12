@@ -43,6 +43,12 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'support@gebrauchtauto-ankauf.de'
+EMAIL_HOST_PASSWORD = 'B&q8Z>2S55'
+EMAIL_USE_SSL = True
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
