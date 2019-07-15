@@ -29,6 +29,9 @@
 
 <form action="/step_three" method="post" id="stepTwo">
     {% csrf_token %}
+    <input type="hidden" name="car_type_name" value="" />
+    <input type="hidden" name="car_body_type_name" value="" />
+    <input type="hidden" name="car_body_sub_type_name" value="" />
     <div class="padding-TB-50">
         <div class="container">
             <div class="row">
@@ -549,13 +552,14 @@
                 }
             };
 
-            xhttp.open("GET", "http://142.93.166.157/getType" +
+            xhttp.open("GET", "https://gebrauchtauto-ankauf.de/getType" +
                 ".php?brand_id="+car_data['car_brand']+"&model_id="+car_data['car_model']+"&year_id="+car_data['car_year'],
                 true);
             xhttp.send();
         }
 
         function getCarBodyTypes(typeId){
+            $('input[name=car_type_name]').val($("#car_type option:selected").html());
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -572,13 +576,14 @@
                 }
             };
 
-            xhttp.open("GET", "http://142.93.166.157/getBodyType" +
+            xhttp.open("GET", "https://gebrauchtauto-ankauf.de/getBodyType" +
                 ".php?brand_id="+car_data['car_brand']+"&model_id="+car_data['car_model']+"&year_id="+car_data['car_year']+"&type_id="+typeId.value,
                 true);
             xhttp.send();
         }
 
         function getCarSubBodyTypes(typeSubId){
+            $('input[name=car_body_type_name]').val($("#car_body_type option:selected").html());
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -594,13 +599,14 @@
                 }
             };
             var carTypeId = $(".car-type").val();
-            xhttp.open("GET", "http://142.93.166.157/getBodySubType" +
+            xhttp.open("GET", "https://gebrauchtauto-ankauf.de/getBodySubType" +
                 ".php?brand_id="+car_data['car_brand']+"&model_id="+car_data['car_model']+"&year_id="+car_data['car_year']+"&type_id="+encodeURIComponent(carTypeId)+"&body_type_id="+typeSubId.value,
                 true);
             xhttp.send();
         }
 
         function getCarKilometer(){
+            $('input[name=car_body_sub_type_name]').val($("#car_body_sub_type option:selected").html());
             $(".kilometer").prop("disabled", false);
         }
 

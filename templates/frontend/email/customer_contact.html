@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Contact</title>
+</head>
+<body>
+
+    <p>Customer Name: {{ step_three_data.user_firstname }}
+        {{ step_three_data.user_lastname }}</p>
+    <p>Customer Email: {{ step_two_car_store_data.user_email }}</p>
+    <p>Customer Phone: {{ step_three_data.user_phone }}</p>
+    <p>Customer Message: {{ step_two_car_store_data.user_message }}</p>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Car Brand</th>
+                <th>Car Model</th>
+                <th>Car Year</th>
+                <th>Car Type</th>
+                <th>Car Body Type</th>
+                <th>Car Body Sub Type</th>
+                <th>Car Kilometer</th>
+                <th>Vehicle Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ step_two_car_store_data.car_brand }}</td>
+                <td>{{ step_two_car_store_data.car_model }}</td>
+                <td>{{ step_two_car_store_data.car_year }}</td>
+                <td>{{ step_two_car_store_data.car_type_name }}</td>
+                <td>{{ step_two_car_store_data.car_body_type_name }}</td>
+                <td>{{ step_two_car_store_data.car_body_sub_type_name }}</td>
+                <td>{{ step_two_car_store_data.kilometer }}</td>
+                <td>V{{ step_two_car_store_data.vehicle_type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

@@ -86,6 +86,9 @@
             <div class="col-md-6 col-sm-10 col-xs-12">
                 <form action="/step_two" id="stepOne" method="post">
                     {% csrf_token %}
+                    <input type="hidden" name="car_brand_name" value="" />
+                    <input type="hidden" name="car_model_name" value="" />
+                    <input type="hidden" name="car_year_name" value="" />
                     <div class="formBox">
                         {% if homepage_content %}
                             {% for content in homepage_content %}
@@ -113,7 +116,7 @@
                             <select class="form-control car-model"
                                     name="car_model"
                                     onchange="getCarYears(this)"
-                                    id="exampleFormControlSelect1"
+                                    id="car-model"
                                     disabled="disabled">
                                 <option>Modell auswählen</option>
                             </select>
@@ -121,9 +124,10 @@
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Erstzulassung</label>
                             <select class="form-control car-year"
-                                    id="exampleFormControlSelect1"
+                                    id="car-year"
                                     disabled="disabled"
                                     name="car_year"
+                                    onchange="setCarYears(this)"
                             >
                                 <option value="">Erstzulassung auswählen</option>
                             </select>
@@ -508,6 +512,8 @@
 
 {% block page_script %}
     <script>
+
+        var api_endpint = "https://gebrauchtauto-ankauf.de/";
         var car_session_data = JSON.parse(`{{ car_session_data }}`.replace
         (/&#39;/g,'"'));
         console.log(car_session_data);
@@ -551,7 +557,41 @@
             }
         });
 
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        let locationUrl = "https://ipapi.co/json/";
+
+        $.get(locationUrl, function(response){
+            {#console.log(response.city);#}
+
+        }).then(function (res) {
+            $.post('/update_session_city', {'city_name': res.city,
+                'csrfmiddlewaretoken': getCookie('csrftoken')},
+                function (res) {
+                if(res === 'False'){
+                    console.log(res);
+                } else {
+                    window.location.replace('/');
+                }
+            });
+        });
+
         function getCarModels(carModelId){
+            $('input[name=car_brand_name]').val($("#car-brand option:selected").html());
 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
@@ -561,18 +601,18 @@
 
                     var _html = '<option value="">Modell auswählen</option>';
                     $.map(carModels, function(value, index) {
-                        console.log(value, index);
                         _html += '<option value='+index+'>'+value+'</option>';
                     });
                     carModelNode.html(_html);
                     carModelNode.prop("disabled", false);
                 }
             };
-            xhttp.open("GET", "http://142.93.166.157/getModel.php?brand_id="+carModelId.value, true);
+            xhttp.open("GET", api_endpint+"getModel.php?brand_id="+carModelId.value, true);
             xhttp.send();
         }
 
         function getCarYears(carYearId){
+            $('input[name=car_model_name]').val($("#car-model option:selected").html());
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -587,22 +627,28 @@
                 }
             };
             var carBrandId = $(".car-brand").val();
-            xhttp.open("GET", "http://142.93.166.157/getYear" +
+            xhttp.open("GET", api_endpint+"getYear" +
                 ".php?brand_id="+carBrandId+"&model_id="+carYearId.value, true);
             xhttp.send();
+        }
+
+        function setCarYears(carYearNode) {
+            $('input[name=car_year_name]').val($("#car-year option:selected").html());
         }
 
         function getBrand() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
-                let carBrands = JSON.parse(this.responseText).wkda;
-                var _html = '<option>Select Car Brand</option>';
-                $.map(carBrands, function(value, index) {
-                    _html += '<option value='+index+'>'+value+'</option>';
-                });
-                $(".car-brand").html(_html);
+                if(this.responseText){
+                    let carBrands = JSON.parse(this.responseText).wkda;
+                    var _html = '<option>Select Car Brand</option>';
+                    $.map(carBrands, function(value, index) {
+                        _html += '<option value='+index+'>'+value+'</option>';
+                    });
+                    $(".car-brand").html(_html);
+                }
             }
-            xhttp.open("GET", "http://142.93.166.157/getBrand.php");
+            xhttp.open("GET", api_endpint+"getBrand.php");
             xhttp.send();
         }
 

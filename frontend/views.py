@@ -3,6 +3,7 @@ import json
 from django.shortcuts import (render, HttpResponseRedirect, HttpResponse)
 from rest_framework import serializers
 from django.core.mail import EmailMessage
+from django.template.loader import get_template
 
 from django.http import JsonResponse
 from contentmanager.models import (
@@ -33,6 +34,25 @@ class CarYearSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarYear
         fields = ('id', 'car_model', 'name', 'alias')
+
+
+
+def update_session_city(request):
+    city_session = request.POST['city_name']
+
+    if request.session.get('city_id', False):
+        response = False
+
+    else:
+        try:
+            city = City.objects.get(name=city_session)
+            request.session['city_id'] = city.id
+            response = True
+
+        except City.DoesNotExist:
+            response = False
+
+    return HttpResponse(response)
 
 
 def index(request):
@@ -122,6 +142,14 @@ def step_two(request):
         "car_year": car_data['car_year']
     }
 
+    car_session_store_data = {
+        "car_brand": car_data['car_brand_name'],
+        "car_model": car_data['car_model_name'],
+        "car_year": car_data['car_year_name']
+    }
+
+    request.session['car_store_data'] = car_session_store_data
+
     request.session['car_data'] = car_session_data
 
     context = {
@@ -136,6 +164,7 @@ def step_two(request):
 def step_three(request):
     car_data = request.POST
     car_session_data = request.session['car_data']
+    car_session_store_data  = request.session['car_store_data']
 
     step_two_car_session_data = {
         "car_brand": car_session_data['car_brand'],
@@ -150,7 +179,21 @@ def step_three(request):
         "user_message": car_data['user_message']
     }
 
+    step_two_car_store_data = {
+        "car_brand": car_session_store_data['car_brand'],
+        "car_model": car_session_store_data['car_model'],
+        "car_year": car_session_store_data['car_year'],
+        "car_type": car_data['car_type_name'],
+        "car_body_type": car_data['car_body_type_name'],
+        "car_body_sub_type": car_data['car_body_sub_type_name'],
+        "kilometer": car_data['kilometer'],
+        "user_email": car_data['user_email'],
+        "vehicle_type": car_data['vehicle_type'],
+        "user_message": car_data['user_message']
+    }
+
     request.session['car_data'] = step_two_car_session_data
+    request.session['car_store_data'] = step_two_car_store_data
 
     city = City.objects.get(name="default")
     car_brands = CarBrand.objects.all()
@@ -164,6 +207,32 @@ def step_three(request):
 
 
 def submit_request(request):
+    step_three_data = request.POST
+    step_two_car_store_data = request.session['car_store_data']
+
+    to = ['support@gebrauchtauto-ankauf.de']
+    subject = 'Customer contact Request'
+    from_email = step_two_car_store_data['user_email']
+
+    ctx = {
+        'step_three_data': step_three_data,
+        'step_two_car_store_data': step_two_car_store_data
+    }
+
+    message = get_template(
+        'templates/frontend/email/customer_contact.html').render(ctx)
+    msg = EmailMessage(subject, message, to=to, from_email=from_email)
+    msg.content_subtype = 'html'
+    msg.send()
+
+    cust_msg = EmailMessage(
+        'Your Contact Request',
+        'Your constact Request have been submitted please wait for response.',
+        to=[step_two_car_store_data['user_email']],
+        from_email='support@gebrauchtauto-ankauf.de'
+    )
+    cust_msg.send()
+
     request_data = request.POST
     car_session_data = request.session['car_data']
     return JsonResponse({
