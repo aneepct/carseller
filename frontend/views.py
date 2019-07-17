@@ -45,7 +45,7 @@ def update_session_city(request):
 
     else:
         try:
-            city = City.objects.get(name=city_session)
+            city = City.objects.get(name__contains=city_session)
             request.session['city_id'] = city.id
             response = True
 
