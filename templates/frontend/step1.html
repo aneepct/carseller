@@ -1,4 +1,5 @@
 {% extends "templates/layout/base.html" %}
+{% block metaDescription %}{% if stepone_content %}{% for content in stepone_content %}{% if content.name == 'stepone_meta_description' %}{% autoescape off %}{{ content.contents }}{% endautoescape %}{% endif %}{% endfor %}{% endif %}{% endblock %}
 {% block content %}
 {% load staticfiles %}
 

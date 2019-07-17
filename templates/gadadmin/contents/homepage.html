@@ -79,6 +79,15 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label> Home Meta Description </label>
+                                        <input
+                                            class="form-control"
+                                            name="home_meta_description"
+                                            value="{% if homepage_content %}{% for content in homepage_content %}{% if content.name == 'home_meta_description' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
                                         <label> Home Section 1 </label>
                                         <textarea id="editor"
                                                   name="home_section_1"

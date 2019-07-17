@@ -106,7 +106,12 @@ def update_location_city(request, city_id):
 def step_one(request):
     if request.method == "POST":
         car_data = request.POST
-        print(car_data)
+
+        if request.session.get('city_id', False):
+            city = City.objects.get(id=request.session['city_id'])
+        else:
+            city = City.objects.get(name="default")
+
         car_session_data = {
             "car_brand": car_data['car_brand'],
             "car_model": car_data['car_model'],
@@ -115,7 +120,6 @@ def step_one(request):
 
         request.session['car_data'] = car_session_data
 
-        city = City.objects.get(name="default")
         car_brands = CarBrand.objects.all()
         stepone_content = StepOne.objects.filter(city=city)
         context = {
@@ -133,7 +137,12 @@ def step_one(request):
 
 def step_two(request):
     car_data = request.POST
-    city = City.objects.get(name="default")
+
+    if request.session.get('city_id', False):
+        city = City.objects.get(id=request.session['city_id'])
+    else:
+        city = City.objects.get(name="default")
+
     car_brands = CarBrand.objects.all()
     steptwo_content = StepTwo.objects.filter(city=city)
     car_session_data = {
@@ -163,6 +172,12 @@ def step_two(request):
 
 def step_three(request):
     car_data = request.POST
+
+    if request.session.get('city_id', False):
+        city = City.objects.get(id=request.session['city_id'])
+    else:
+        city = City.objects.get(name="default")
+
     car_session_data = request.session['car_data']
     car_session_store_data  = request.session['car_store_data']
 
@@ -195,7 +210,6 @@ def step_three(request):
     request.session['car_data'] = step_two_car_session_data
     request.session['car_store_data'] = step_two_car_store_data
 
-    city = City.objects.get(name="default")
     car_brands = CarBrand.objects.all()
     stepthree_content = StepThree.objects.filter(city=city)
     context = {
@@ -211,7 +225,7 @@ def submit_request(request):
     step_two_car_store_data = request.session['car_store_data']
 
     to = ['support@gebrauchtauto-ankauf.de']
-    subject = 'Customer contact Request'
+    subject = 'Contact request from %s' % step_two_car_store_data['user_email']
     from_email = step_two_car_store_data['user_email']
 
     ctx = {
@@ -232,6 +246,12 @@ def submit_request(request):
         from_email='support@gebrauchtauto-ankauf.de'
     )
     cust_msg.send()
+
+    try:
+        request.session['car_store_data'] = {}
+        request.session['car_data'] = {}
+    except:
+        pass
 
     request_data = request.POST
     car_session_data = request.session['car_data']

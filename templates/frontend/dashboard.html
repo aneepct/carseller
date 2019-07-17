@@ -1,4 +1,5 @@
 {% extends "templates/layout/base.html" %}
+{% block metaDescription %}{% if homepage_content %}{% for content in homepage_content %}{% if content.name == 'home_meta_description' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}
 {% block content %}
 {% load staticfiles %}
 
@@ -516,7 +517,6 @@
         var api_endpint = "https://gebrauchtauto-ankauf.de/";
         var car_session_data = JSON.parse(`{{ car_session_data }}`.replace
         (/&#39;/g,'"'));
-        console.log(car_session_data);
         $("#car-model").val(car_session_data['car_model']);
         $("#car-brand").val(car_session_data['car_brand']);
         $("#car-year").val(car_session_data['car_year']);
@@ -528,12 +528,11 @@
 
         getPosition()
         .then((position) => {
-            console.log(position);
+            //
         })
         .catch(async (err) => {
             var cities = JSON.parse(`{{ cities }}`.replace(/&quot;/g,'"'));
             var current_city_location = `{{ current_city_location }}`;
-            console.log(current_city_location);
             if (current_city_location == 'False'){
                 var _html = '<form action="/update_location_city" method="get" id="changeLocation">';
                 _html += '<select name="city_id" id="cityInput">';

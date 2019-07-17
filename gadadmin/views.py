@@ -145,6 +145,11 @@ def homepage_content(request, city_name):
 
         city = City.objects.get(name=city_name)
 
+        HomepageContent.objects.get_or_create(
+            city=city,
+            name='home_meta_description'
+        )
+
         HomepageContent.objects.get_or_create(city=city, name='home_section_1')
         HomepageContent.objects.get_or_create(
             city=city, name='home_section_2_1')
@@ -191,6 +196,10 @@ def homepage_content(request, city_name):
 
         HomepageContent.objects.get_or_create(
             city=city, name='home_section_9')
+
+        home_meta_description = HomepageContent.objects.get(name='home_meta_description')
+        home_meta_description.contents = input_data['home_meta_description']
+        home_meta_description.save()
 
         home_section_1 = HomepageContent.objects.get(name='home_section_1')
         home_section_1.contents = input_data['home_section_1']
@@ -288,6 +297,11 @@ def stepone_content(request, city_name):
 
         city = City.objects.get(name=city_name)
 
+        StepOne.objects.get_or_create(
+            city=city,
+            name='stepone_meta_description'
+        )
+
         StepOne.objects.get_or_create(city=city, name='stepone_section_1')
 
         StepOne.objects.get_or_create(city=city, name='stepone_section_2_1')
@@ -306,6 +320,11 @@ def stepone_content(request, city_name):
         StepOne.objects.get_or_create(city=city, name='stepone_section_7_3')
 
         StepOne.objects.get_or_create(city=city, name='stepone_section_8')
+
+        stepone_meta_description = StepOne.objects.get(
+            name='stepone_meta_description')
+        stepone_meta_description.contents = input_data['stepone_meta_description']
+        stepone_meta_description.save()
 
         stepone_section_1 = StepOne.objects.get(name='stepone_section_1')
         stepone_section_1.contents = input_data['stepone_section_1']
@@ -372,6 +391,9 @@ def steptwo_content(request, city_name):
 
         city = City.objects.get(name=city_name)
 
+        StepTwo.objects.get_or_create(city=city,
+                                      name='steptwo_meta_description')
+
         StepTwo.objects.get_or_create(city=city, name='steptwo_section_1')
 
         StepTwo.objects.get_or_create(city=city, name='steptwo_section_2_1')
@@ -396,6 +418,12 @@ def steptwo_content(request, city_name):
         steptwo_section_1 = StepTwo.objects.get(name='steptwo_section_1')
         steptwo_section_1.contents = input_data['steptwo_section_1']
         steptwo_section_1.save()
+
+        steptwo_meta_description = StepTwo.objects.get(
+            name='steptwo_meta_description')
+        steptwo_meta_description.contents = input_data[
+            'steptwo_meta_description']
+        steptwo_meta_description.save()
 
         steptwo_section_2_1 = StepTwo.objects.get(name='steptwo_section_2_1')
         steptwo_section_2_1.contents = input_data['steptwo_section_2_1']
@@ -465,6 +493,8 @@ def stepthree_content(request, city_name):
 
         city = City.objects.get(name=city_name)
 
+        StepThree.objects.get_or_create(city=city,
+                                        name='stepthree_meta_description')
         StepThree.objects.get_or_create(city=city, name='stepthree_section_1')
 
         StepThree.objects.get_or_create(city=city, name='stepthree_section_2')
@@ -490,6 +520,12 @@ def stepthree_content(request, city_name):
         StepThree.objects.get_or_create(city=city, name='stepthree_section_5')
 
         StepThree.objects.get_or_create(city=city, name='stepthree_section_6')
+
+        stepthree_meta_description = StepThree.objects.get(
+            name='stepthree_meta_description')
+        stepthree_meta_description.contents = input_data[
+            'stepthree_meta_description']
+        stepthree_meta_description.save()
 
         StepThree.objects.get_or_create(
             city=city, name='stepthree_section_7_1')

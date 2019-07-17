@@ -67,6 +67,15 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label> Stepthree Meta Description </label>
+                                        <input
+                                            class="form-control"
+                                            name="stepthree_meta_description"
+                                            value="{% if stepthree_content %}{% for content in stepthree_content %}{% if content.name == 'stepthree_meta_description' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
                                         <label> Stapthree Section 1 </label>
                                         <textarea id="editor"
                                                   name="stepthree_section_1"
