@@ -3,12 +3,13 @@
 <html lang="en">
     <head>
         <!-- Required meta tags -->
-        <title>Gebrauchtauto-ankauf</title>
+        <title>{% block metaTitle %} {% endblock metaTitle %}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <meta name="google-site-verification" content="VbMoJKWVBfbmSYlqOCKbRuEVkngWr2CxfFo8X7YRQ9g" />
         <meta name="description" content="{% block metaDescription %} {% endblock metaDescription %}" />
+        <meta name="keywords" content="{% block metaKeywords %} {% endblock metaKeywords %}" />
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href={% static 'frontend/res/bootstrap/css/bootstrap.min.css' %} integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -51,5 +52,6 @@
         </script>
 
         {% block page_script %} {% endblock page_script %}
+        {% block metaSchema %} {% endblock metaSchema %}
     </body>
 </html>

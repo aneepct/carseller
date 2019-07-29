@@ -7,7 +7,7 @@ from django.template.loader import get_template
 
 from django.http import JsonResponse
 from contentmanager.models import (
-    HomepageContent, StepOne, StepTwo, StepThree, City)
+    HomepageContent, StepOne, StepTwo, StepThree, City, CityPage)
 from .models import CarBrand, CarModel, CarYear
 
 
@@ -131,6 +131,69 @@ def step_one(request):
         }
 
         return render(request, 'templates/frontend/step1.html', context)
+
+    else:
+        return HttpResponseRedirect("/")
+
+
+def city_page(request):
+    if request.method == "GET":
+        if request.session.get('city_id', False):
+            city = City.objects.get(id=request.session['city_id'])
+            current_city_location = True
+        else:
+            city = City.objects.get(name="default")
+            current_city_location = False
+
+        cities = City.objects.all()
+        car_brands = CarBrand.objects.all()
+        citypage_content = CityPage.objects.filter(city=city)
+        car_data = {}
+        if request.session.get('car_data', False):
+            car_data = request.session['car_data']
+
+        if not citypage_content:
+            city = City.objects.get(name="default")
+            citypage_content = CityPage.objects.filter(city=city)
+
+        serializer = CitySerializer(cities, many=True)
+        context = {
+            "citypage_content": citypage_content,
+            "car_brands": car_brands,
+            "cities": json.dumps(serializer.data),
+            "current_city_location": current_city_location,
+            "car_session_data": car_data,
+        }
+
+        return render(request, 'templates/frontend/citypage.html', context)
+
+    if request.method == "POST":
+        car_data = request.POST
+
+        if request.session.get('city_id', False):
+            city = City.objects.get(id=request.session['city_id'])
+        else:
+            city = City.objects.get(name="default")
+
+        car_session_data = {
+            "car_brand": car_data['car_brand'],
+            "car_model": car_data['car_model'],
+            "car_year": car_data['car_year']
+        }
+
+        request.session['car_data'] = car_session_data
+
+        car_brands = CarBrand.objects.all()
+        citypage_content = CityPage.objects.filter(city=city)
+        context = {
+            "citypage_content": citypage_content,
+            "car_brands": car_brands,
+            "car_brand": car_data['car_brand'],
+            "car_model": car_data['car_model'],
+            "car_year": car_data['car_year']
+        }
+
+        return render(request, 'templates/frontend/citypage.html', context)
 
     else:
         return HttpResponseRedirect("/")

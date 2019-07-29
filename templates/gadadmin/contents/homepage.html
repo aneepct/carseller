@@ -79,11 +79,46 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label> Home Meta Description </label>
+                                        <label> Home SEO Title </label>
+                                        <input
+                                            class="form-control"
+                                            name="home_meta_title"
+                                            value="{% if homepage_content %}{% for content in homepage_content %}{% if content.name == 'home_meta_title' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home SEO Description </label>
                                         <input
                                             class="form-control"
                                             name="home_meta_description"
                                             value="{% if homepage_content %}{% for content in homepage_content %}{% if content.name == 'home_meta_description' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home SEO Keywords </label>
+                                        <input
+                                            class="form-control"
+                                            name="home_meta_keywords"
+                                            value="{% if homepage_content %}{% for content in homepage_content %}{% if content.name == 'home_meta_keywords' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home SEO Schema </label>
+                                        <textarea
+                                            class="form-control"
+                                            name="home_meta_schema"
+                                            rows="10" cols="80">{% if homepage_content %}{% for content in homepage_content %}{% if content.name == 'home_meta_schema' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Home Contact Button Text</label>
+                                        <input
+                                            class="form-control"
+                                            name="home_contact_button"
+                                            value="{% if homepage_content %}{% for content in homepage_content %}{% if content.name == 'home_contact_button' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
                                         />
                                     </div>
 

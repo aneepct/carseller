@@ -67,11 +67,46 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label> Steptwo Meta Description </label>
+                                        <label> Steptwo SEO Title </label>
+                                        <input
+                                            class="form-control"
+                                            name="steptwo_meta_title"
+                                            value="{% if steptwo_content %}{% for content in steptwo_content %}{% if content.name == 'steptwo_meta_title' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Steptwo SEO Description </label>
                                         <input
                                             class="form-control"
                                             name="steptwo_meta_description"
                                             value="{% if steptwo_content %}{% for content in steptwo_content %}{% if content.name == 'steptwo_meta_description' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Steptwo SEO Keywords </label>
+                                        <input
+                                            class="form-control"
+                                            name="steptwo_meta_keywords"
+                                            value="{% if steptwo_content %}{% for content in steptwo_content %}{% if content.name == 'steptwo_meta_keywords' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Steptwo SEO Schema </label>
+                                        <textarea
+                                            class="form-control"
+                                            name="steptwo_meta_schema"
+                                            rows="10" cols="80">{% if steptwo_content %}{% for content in steptwo_content %}{% if content.name == 'steptwo_meta_schema' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> Steptwo Button Text</label>
+                                        <input
+                                            class="form-control"
+                                            name="steptwo_contact_button"
+                                            value="{% if steptwo_content %}{% for content in steptwo_content %}{% if content.name == 'steptwo_contact_button' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
                                         />
                                     </div>
 

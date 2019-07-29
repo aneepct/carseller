@@ -1,5 +1,7 @@
 {% extends "templates/layout/base.html" %}
-{% block metaDescription %}{% if steptwo_content %}{% for content in steptwo_content %}{% if content.name == 'steptwo_meta_description' %}{% autoescape off %}{{ content.contents }}{% endautoescape %}{% endif %}{% endfor %}{% endif %}{% endblock %}
+{% block metaDescription %}{% if steptwo_content %}{% for content in steptwo_content %}{% if content.name == 'steptwo_meta_title' %}{% autoescape off %}{{ content.contents }}{% endautoescape %}{% endif %}{% endfor %}{% endif %}{% endblock %}
+{% block metaTitle %}{% if steptwo_content %}{% for content in steptwo_content %}{% if content.name == 'steptwo_meta_description' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}
+{% block metaKeywords %}{% if steptwo_content %}{% for content in steptwo_content %}{% if content.name == 'steptwo_meta_keywords' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}
 {% block content %}
 {% load staticfiles %}
 
@@ -130,9 +132,7 @@
                     </form>
 
                         <button type="submit" class="btn btn-primary"
-                                onclick="getValidate(event)">Jetzt
-                            kostenlos
-                            bewerten</button>
+                                onclick="getValidate(event)">{% if steptwo_content %}{% for content in steptwo_content %}{% if content.name == 'steptwo_contact_button' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}</button>
                     </div>
                 </div>
 
@@ -642,3 +642,4 @@
         }
     </script>
 {% endblock %}
+{% block metaSchema %}{% if steptwo_content %}{% for content in steptwo_content %}{% if content.name == 'steptwo_meta_schema' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}

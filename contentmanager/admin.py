@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import (City, HomepageContent, StepOne, StepTwo, StepThree)
+from .models import (City, HomepageContent, StepOne, StepTwo, StepThree, CityPage)
 
 
 class CityAdmin(admin.ModelAdmin):
@@ -24,8 +24,13 @@ class StepThreeAdmin(admin.ModelAdmin):
     model = StepThree
 
 
+class CityPageAdmin(admin.ModelAdmin):
+    model = CityPage
+
+
 admin.site.register(City, CityAdmin)
 admin.site.register(HomepageContent, HomepageContentAdmin)
 admin.site.register(StepOne, StepOneAdmin)
 admin.site.register(StepTwo, StepTwoAdmin)
 admin.site.register(StepThree, StepThreeAdmin)
+admin.site.register(CityPage, CityPageAdmin)

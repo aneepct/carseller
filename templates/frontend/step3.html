@@ -1,5 +1,7 @@
 {% extends "templates/layout/base.html" %}
-{% block metaDescription %}{% if stepthree_content %}{% for content in stepthree_content %}{% if content.name == 'stepthree_meta_description' %}{% autoescape off %}{{ content.contents }}{% endautoescape %}{% endif %}{% endfor %}{% endif %}{% endblock %}
+{% block metaDescription %}{% if stepthree_content %}{% for content in stepthree_content %}{% if content.name == 'stepthree_meta_title' %}{% autoescape off %}{{ content.contents }}{% endautoescape %}{% endif %}{% endfor %}{% endif %}{% endblock %}
+{% block metaTitle %}{% if stepthree_content %}{% for content in stepthree_content %}{% if content.name == 'stepthree_meta_description' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}
+{% block metaKeywords %}{% if stepthree_content %}{% for content in stepthree_content %}{% if content.name == 'stepthree_meta_keywords' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}
 {% block content %}
 {% load staticfiles %}
 
@@ -66,9 +68,7 @@
                         </form>
 
                             <button class="btn
-                            btn-primary" onclick="getValidate(event)">Jetzt
-                                kostenlos
-                                bewerten</button>
+                            btn-primary" onclick="getValidate(event)">{% if stepthree_content %}{% for content in stepthree_content %}{% if content.name == 'stepthree_contact_button' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}</button>
                         </div>
                 </div>
                 <div class="col-md-6 col-sm-10 col-xs-12">
@@ -403,3 +403,4 @@
         }
     </script>
 {% endblock %}
+{% block metaSchema %}{% if stepthree_content %}{% for content in stepthree_content %}{% if content.name == 'stepthree_meta_schema' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}

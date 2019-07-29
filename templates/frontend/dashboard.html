@@ -1,5 +1,7 @@
 {% extends "templates/layout/base.html" %}
+{% block metaTitle %}{% if homepage_content %}{% for content in homepage_content %}{% if content.name == 'home_meta_title' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}
 {% block metaDescription %}{% if homepage_content %}{% for content in homepage_content %}{% if content.name == 'home_meta_description' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}
+{% block metaKeywords %}{% if homepage_content %}{% for content in homepage_content %}{% if content.name == 'home_meta_keywords' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}
 {% block content %}
 {% load staticfiles %}
 
@@ -135,8 +137,7 @@
                         </div>
                     </form>
                         <button type="submit" class="btn btn-primary"
-                                onclick="getValidate(event)">Jetzt
-                            kostenlos bewerten</button>
+                                onclick="getValidate(event)">{% if homepage_content %}{% for content in homepage_content %}{% if content.name == 'home_contact_button' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}</button>
                     </div>
             </div>
         </div>
@@ -674,3 +675,4 @@
         }
     </script>
 {% endblock %}
+{% block metaSchema %}{% if homepage_content %}{% for content in homepage_content %}{% if content.name == 'home_meta_schema' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}

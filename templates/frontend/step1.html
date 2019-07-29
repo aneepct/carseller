@@ -1,5 +1,7 @@
 {% extends "templates/layout/base.html" %}
 {% block metaDescription %}{% if stepone_content %}{% for content in stepone_content %}{% if content.name == 'stepone_meta_description' %}{% autoescape off %}{{ content.contents }}{% endautoescape %}{% endif %}{% endfor %}{% endif %}{% endblock %}
+{% block metaTitle %}{% if stepone_content %}{% for content in stepone_content %}{% if content.name == 'stepone_meta_title' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}
+{% block metaKeywords %}{% if stepone_content %}{% for content in stepone_content %}{% if content.name == 'stepone_meta_keywords' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}
 {% block content %}
 {% load staticfiles %}
 
@@ -64,8 +66,7 @@
                                 <option value="">Erstzulassung auswählen</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Jetzt
-                            kostenlos bewerten</button>
+                        <button type="submit" class="btn btn-primary">{% if stepone_content %}{% for content in stepone_content %}{% if content.name == 'stepone_contact_button' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}</button>
                     </div>
                 </form>
             </div>
@@ -488,3 +489,4 @@
         getBrand();
     </script>
 {% endblock %}
+{% block metaSchema %}{% if stepone_content %}{% for content in stepone_content %}{% if content.name == 'stepone_meta_schema' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}

@@ -32,6 +32,18 @@ class HomepageContent(models.Model):
         return str(self.name)
 
 
+class CityPage(models.Model):
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    contents = models.TextField(null=True)
+
+    class Meta:
+        db_table = 'citypage_contents'
+
+    def __str__(self):  # __unicode__ on Python 2
+        return str(self.name)
+
+
 class StepOne(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)

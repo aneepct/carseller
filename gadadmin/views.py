@@ -147,9 +147,22 @@ def homepage_content(request, city_name):
 
         HomepageContent.objects.get_or_create(
             city=city,
+            name='home_meta_title'
+        )
+        HomepageContent.objects.get_or_create(
+            city=city,
             name='home_meta_description'
         )
+        HomepageContent.objects.get_or_create(
+            city=city,
+            name='home_meta_keywords'
+        )
+        HomepageContent.objects.get_or_create(
+            city=city,
+            name='home_meta_schema'
+        )
 
+        HomepageContent.objects.get_or_create(city=city, name='home_contact_button')
         HomepageContent.objects.get_or_create(city=city, name='home_section_1')
         HomepageContent.objects.get_or_create(
             city=city, name='home_section_2_1')
@@ -197,9 +210,25 @@ def homepage_content(request, city_name):
         HomepageContent.objects.get_or_create(
             city=city, name='home_section_9')
 
+        home_contact_button = HomepageContent.objects.get(name='home_contact_button')
+        home_contact_button.contents = input_data['home_contact_button']
+        home_contact_button.save()
+
+        home_meta_title = HomepageContent.objects.get(name='home_meta_title')
+        home_meta_title.contents = input_data['home_meta_title']
+        home_meta_title.save()
+
         home_meta_description = HomepageContent.objects.get(name='home_meta_description')
         home_meta_description.contents = input_data['home_meta_description']
         home_meta_description.save()
+
+        home_meta_keywords = HomepageContent.objects.get(name='home_meta_keywords')
+        home_meta_keywords.contents = input_data['home_meta_keywords']
+        home_meta_keywords.save()
+
+        home_meta_schema = HomepageContent.objects.get(name='home_meta_schema')
+        home_meta_schema.contents = input_data['home_meta_schema']
+        home_meta_schema.save()
 
         home_section_1 = HomepageContent.objects.get(name='home_section_1')
         home_section_1.contents = input_data['home_section_1']
@@ -299,8 +328,22 @@ def stepone_content(request, city_name):
 
         StepOne.objects.get_or_create(
             city=city,
+            name='stepone_meta_title'
+        )
+        StepOne.objects.get_or_create(
+            city=city,
             name='stepone_meta_description'
         )
+        StepOne.objects.get_or_create(
+            city=city,
+            name='stepone_meta_keywords'
+        )
+        StepOne.objects.get_or_create(
+            city=city,
+            name='stepone_meta_schema'
+        )
+
+        StepOne.objects.get_or_create(city=city, name='stepone_contact_button')
 
         StepOne.objects.get_or_create(city=city, name='stepone_section_1')
 
@@ -321,10 +364,32 @@ def stepone_content(request, city_name):
 
         StepOne.objects.get_or_create(city=city, name='stepone_section_8')
 
+        stepone_meta_title = StepOne.objects.get(
+            name='stepone_meta_title')
+        stepone_meta_title.contents = input_data[
+            'stepone_meta_title']
+        stepone_meta_title.save()
+
         stepone_meta_description = StepOne.objects.get(
             name='stepone_meta_description')
         stepone_meta_description.contents = input_data['stepone_meta_description']
         stepone_meta_description.save()
+
+        stepone_meta_keywords = StepOne.objects.get(
+            name='stepone_meta_keywords')
+        stepone_meta_keywords.contents = input_data[
+            'stepone_meta_keywords']
+        stepone_meta_keywords.save()
+
+        stepone_meta_schema = StepOne.objects.get(
+            name='stepone_meta_schema')
+        stepone_meta_schema.contents = input_data[
+            'stepone_meta_schema']
+        stepone_meta_schema.save()
+
+        stepone_contact_button = StepOne.objects.get(name='stepone_contact_button')
+        stepone_contact_button.contents = input_data['stepone_contact_button']
+        stepone_contact_button.save()
 
         stepone_section_1 = StepOne.objects.get(name='stepone_section_1')
         stepone_section_1.contents = input_data['stepone_section_1']
@@ -391,8 +456,19 @@ def steptwo_content(request, city_name):
 
         city = City.objects.get(name=city_name)
 
-        StepTwo.objects.get_or_create(city=city,
-                                      name='steptwo_meta_description')
+        StepTwo.objects.get_or_create(
+            city=city, name='steptwo_meta_title')
+
+        StepTwo.objects.get_or_create(
+            city=city, name='steptwo_meta_description')
+
+        StepTwo.objects.get_or_create(
+            city=city, name='steptwo_meta_keywords')
+
+        StepTwo.objects.get_or_create(
+            city=city, name='steptwo_meta_schema')
+
+        StepTwo.objects.get_or_create(city=city, name='steptwo_contact_button')
 
         StepTwo.objects.get_or_create(city=city, name='steptwo_section_1')
 
@@ -419,11 +495,35 @@ def steptwo_content(request, city_name):
         steptwo_section_1.contents = input_data['steptwo_section_1']
         steptwo_section_1.save()
 
+        steptwo_contact_button = StepTwo.objects.get(
+            name='steptwo_contact_button')
+        steptwo_contact_button.contents = input_data[
+            'steptwo_contact_button']
+        steptwo_contact_button.save()
+
+        steptwo_meta_title = StepTwo.objects.get(
+            name='steptwo_meta_title')
+        steptwo_meta_title.contents = input_data[
+            'steptwo_meta_title']
+        steptwo_meta_title.save()
+
         steptwo_meta_description = StepTwo.objects.get(
             name='steptwo_meta_description')
         steptwo_meta_description.contents = input_data[
             'steptwo_meta_description']
         steptwo_meta_description.save()
+
+        steptwo_meta_keywords = StepTwo.objects.get(
+            name='steptwo_meta_keywords')
+        steptwo_meta_keywords.contents = input_data[
+            'steptwo_meta_keywords']
+        steptwo_meta_keywords.save()
+
+        steptwo_meta_schema = StepTwo.objects.get(
+            name='steptwo_meta_schema')
+        steptwo_meta_schema.contents = input_data[
+            'steptwo_meta_schema']
+        steptwo_meta_schema.save()
 
         steptwo_section_2_1 = StepTwo.objects.get(name='steptwo_section_2_1')
         steptwo_section_2_1.contents = input_data['steptwo_section_2_1']
@@ -493,8 +593,17 @@ def stepthree_content(request, city_name):
 
         city = City.objects.get(name=city_name)
 
-        StepThree.objects.get_or_create(city=city,
-                                        name='stepthree_meta_description')
+        StepThree.objects.get_or_create(
+            city=city, name='stepthree_meta_title')
+        StepThree.objects.get_or_create(
+            city=city, name='stepthree_meta_description')
+        StepThree.objects.get_or_create(
+            city=city, name='stepthree_meta_keywords')
+        StepThree.objects.get_or_create(
+            city=city, name='stepthree_meta_schema')
+
+        StepThree.objects.get_or_create(city=city, name='stepthree_contact_button')
+
         StepThree.objects.get_or_create(city=city, name='stepthree_section_1')
 
         StepThree.objects.get_or_create(city=city, name='stepthree_section_2')
@@ -521,11 +630,35 @@ def stepthree_content(request, city_name):
 
         StepThree.objects.get_or_create(city=city, name='stepthree_section_6')
 
+        stepthree_contact_button = StepThree.objects.get(
+            name='stepthree_contact_button')
+        stepthree_contact_button.contents = input_data[
+            'stepthree_contact_button']
+        stepthree_contact_button.save()
+
+        stepthree_meta_title = StepThree.objects.get(
+            name='stepthree_meta_title')
+        stepthree_meta_title.contents = input_data[
+            'stepthree_meta_title']
+        stepthree_meta_title.save()
+
         stepthree_meta_description = StepThree.objects.get(
             name='stepthree_meta_description')
         stepthree_meta_description.contents = input_data[
             'stepthree_meta_description']
         stepthree_meta_description.save()
+
+        stepthree_meta_keywords = StepThree.objects.get(
+            name='stepthree_meta_keywords')
+        stepthree_meta_keywords.contents = input_data[
+            'stepthree_meta_keywords']
+        stepthree_meta_keywords.save()
+
+        stepthree_meta_schema = StepThree.objects.get(
+            name='stepthree_meta_schema')
+        stepthree_meta_schema.contents = input_data[
+            'stepthree_meta_schema']
+        stepthree_meta_schema.save()
 
         StepThree.objects.get_or_create(
             city=city, name='stepthree_section_7_1')
