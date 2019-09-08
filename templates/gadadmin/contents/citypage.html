@@ -1,0 +1,511 @@
+{% extends "templates/gadadmin/layout/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    {% include 'templates/gadadmin/layout/header.html' %}
+    {% include 'templates/gadadmin/layout/sidebar.html' %}
+
+        <div class="content-wrapper">
+            <section class="content-header">
+              <h1>
+                Homepage Contents
+                <small>Update homepage contents</small>
+              </h1>
+              <ol class="breadcrumb">
+                <li><a href="/gadadmin/dashboard">
+                    <i class="fa fa-dashboard"></i>
+                    Home</a>
+                </li>
+                <li class="active">Setup Citypage Contents</li>
+              </ol>
+            </section>
+
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if messages %}
+                              {% for message in messages %}
+                                <div class="alert
+                                    {% if message.tags == 'error' %}
+                                        alert-danger
+                                    {% else %}
+                                        alert-{{ message.tags }}
+                                    {% endif %}
+                                    alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    {{ message }}
+                                </div>
+                              {% endfor %}
+                          {% endif %}
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">
+                                    Citypage contents
+                                </h3>
+
+                                <div class="box-tools">
+                                    <ul class="pagination pagination-sm no-margin pull-right">
+                                        <li>
+                                            <a href="/gadadmin/dashboard"
+                                               class="btn btn-sm btn-warning">
+                                                <i class="fa fa-backward"></i>
+                                                Back
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body pad">
+                                <form
+                                    action="/gadadmin/citypage_content/{{ city_name }}"
+                                    method="post"
+                                >
+                                    {% csrf_token %}
+
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <select class="form-control select2"
+                                                onchange="changeContent(this)">
+                                            {% for city in cities %}
+                                                <option
+                                                    {% if city.name == city_name %}
+                                                        selected="selected"
+                                                    {% endif %}
+                                                >
+                                                    {{ city.name }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Page SEO Title </label>
+                                        <input
+                                            class="form-control"
+                                            name="citypage_meta_title"
+                                            value="{% if citypage_content %}{% for content in citypage_content %}{% if content.name == 'citypage_meta_title' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Page SEO Description
+                                        </label>
+                                        <input
+                                            class="form-control"
+                                            name="citypage_meta_description"
+                                            value="{% if citypage_content %}{% for content in citypage_content %}{% if content.name == 'citypage_meta_description' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Page SEO Keywords
+                                        </label>
+                                        <input
+                                            class="form-control"
+                                            name="citypage_meta_keywords"
+                                            value="{% if citypage_content %}{% for content in citypage_content %}{% if content.name == 'citypage_meta_keywords' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Page SEO Schema </label>
+                                        <textarea
+                                            class="form-control"
+                                            name="citypage_meta_schema"
+                                            rows="10" cols="80">{% if citypage_content %}{% for content in citypage_content %}{% if content.name == 'citypage_meta_schema' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Page Contact Button
+                                            Text</label>
+                                        <input
+                                            class="form-control"
+                                            name="citypage_contact_button"
+                                            value="{% if citypage_content %}{% for content in citypage_content %}{% if content.name == 'citypage_contact_button' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 1 </label>
+                                        <textarea id="editor"
+                                                  name="citypage_section_1"
+                                                  rows="10" cols="80">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 2 </label>
+                                        <textarea id="editor1"
+                                                  name="citypage_section_2"
+                                                  rows="10" cols="80">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 3 (1) </label>
+                                        <textarea id="editor2"
+                                                  name="citypage_section_3_1"
+                                                  rows="10" cols="80">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_3_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 3 (2) </label>
+                                        <textarea id="editor3"
+                                                  name="citypage_section_3_2"
+                                                  rows="10" cols="80">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_3_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 4 (1) </label>
+                                        <textarea id="editor4"
+                                                  name="citypage_section_4_1"
+                                                  rows="10" cols="80">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_4_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 4 (2) </label>
+                                        <textarea id="editor5"
+                                                  name="citypage_section_4_2"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_4_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 5 (1) </label>
+                                        <textarea id="editor6"
+                                                  name="citypage_section_5_1"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_5_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label> City Section 5 (2) </label>
+                                        <textarea id="editor7"
+                                                  name="citypage_section_5_2"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_5_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 5 (3) </label>
+                                        <textarea id="editor8"
+                                                  name="citypage_section_5_3"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_5_3' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 5 (4) </label>
+                                        <textarea id="editor9"
+                                                  name="citypage_section_5_4"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_5_4' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 6 (1) </label>
+                                        <textarea id="editor10"
+                                                  name="citypage_section_6_1"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_6_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 6 (2) </label>
+                                        <textarea id="editor11"
+                                                  name="citypage_section_6_2"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_6_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 7 </label>
+                                        <textarea id="editor12"
+                                                  name="citypage_section_7"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_7' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 8 (1) </label>
+                                        <textarea id="editor13"
+                                                  name="citypage_section_8_1"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_8_1' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 8 (2) </label>
+                                        <textarea id="editor14"
+                                                  name="citypage_section_8_2"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_8_2' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 8 (3) </label>
+                                        <textarea id="editor15"
+                                                  name="citypage_section_8_3"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_8_3' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 8 (4) </label>
+                                        <textarea id="editor16"
+                                                  name="citypage_section_8_4"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_8_4' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 8 (5) </label>
+                                        <textarea id="editor17"
+                                                  name="citypage_section_8_5"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_8_5' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 8 (6) </label>
+                                        <textarea id="editor18"
+                                                  name="citypage_section_8_6"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_8_6' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 8 (7) </label>
+                                        <textarea id="editor19"
+                                                  name="citypage_section_8_7"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_8_7' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label> City Section 9 </label>
+                                        <textarea id="editor20"
+                                                  name="citypage_section_9"
+                                                  rows="1" cols="1">
+                                            {% if citypage_content %}
+                                                {% for content in citypage_content %}
+                                                    {% if content.name == 'citypage_section_9' %}
+                                                        {{ content.contents }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- /.col -->
+                                        <div class="col-xs-4 col-md-2">
+                                          <button type="submit"
+                                                  class="btn btn-primary
+                                                   btn-block
+                                                   btn-flat">Save</button>
+                                        </div>
+                                          <div class="col-md-2">
+                                              <a href="/gadadmin/dashboard"
+                                                class="
+                                                btn
+                                                btn-danger
+                                                btn-block
+                                                btn-flat pull-right"
+                                            >
+                                                Cancel
+                                            </a>
+                                          </div>
+                                        <!-- /.col -->
+                                      </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    {% include 'templates/gadadmin/layout/footer.html' %}
+
+{% endblock %}
+
+{% block page_script %}
+    <script>
+        $(function () {
+            CKEDITOR.replace('editor');
+            CKEDITOR.replace('editor1');
+            CKEDITOR.replace('editor2');
+            CKEDITOR.replace('editor3');
+            CKEDITOR.replace('editor4');
+            CKEDITOR.replace('editor5');
+            CKEDITOR.replace('editor6');
+            CKEDITOR.replace('editor7');
+            CKEDITOR.replace('editor8');
+            CKEDITOR.replace('editor9');
+            CKEDITOR.replace('editor10');
+            CKEDITOR.replace('editor11');
+            CKEDITOR.replace('editor12');
+            CKEDITOR.replace('editor13');
+            CKEDITOR.replace('editor14');
+            CKEDITOR.replace('editor15');
+            CKEDITOR.replace('editor16');
+            CKEDITOR.replace('editor17');
+            CKEDITOR.replace('editor18');
+            CKEDITOR.replace('editor19');
+            CKEDITOR.replace('editor20');
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        })
+
+        function changeContent(city) {
+            console.log(city.value, '/gadadmin/homepage_content/'+city.value);
+            window.location.replace('/gadadmin/homepage_content/'+city.value)
+        }
+    </script>
+{% endblock %}

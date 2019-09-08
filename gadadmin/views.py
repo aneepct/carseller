@@ -5,7 +5,7 @@ from django.contrib import messages
 
 from django.http import HttpResponseRedirect
 from contentmanager.models import (
-    HomepageContent, StepOne, StepTwo, StepThree, City)
+    HomepageContent, StepOne, StepTwo, StepThree, City, CityPage)
 from frontend.models import (
     CarBrand, CarModel, CarYear, CarDesign, CarTrim, CarType
 )
@@ -716,3 +716,205 @@ def stepthree_content(request, city_name):
 
         messages.success(request, 'Content saved successfully.')
         return HttpResponseRedirect('/gadadmin/stepthree_content/%s' % city_name)
+
+
+@login_required(login_url='/gadadmin/login')
+def citypage_content(request, city_name):
+
+    if request.method == 'GET':
+        city = City.objects.get(name=city_name)
+        cities = City.objects.all()
+        citypage_content = CityPage.objects.filter(city=city)
+        context = {
+            "citypage_content": citypage_content,
+            "cities": cities,
+            "city_name": city_name
+        }
+        return render(request, 'templates/gadadmin/contents/citypage.html',
+                      context)
+
+    if request.method == 'POST':
+        input_data = request.POST
+
+        city = City.objects.get(name=city_name)
+
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_meta_title')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_meta_description')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_meta_keywords')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_meta_schema')
+
+        CityPage.objects.get_or_create(city=city, name='citypage_contact_button')
+
+        CityPage.objects.get_or_create(city=city, name='citypage_section_1')
+
+        CityPage.objects.get_or_create(city=city, name='citypage_section_2')
+
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_3_1')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_3_2')
+
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_4_1')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_4_2')
+
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_5_1')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_5_2')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_5_3')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_5_4')
+
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_6_1')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_6_2')
+
+        CityPage.objects.get_or_create(city=city, name='citypage_section_7')
+
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_8_1')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_8_2')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_8_3')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_8_4')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_8_5')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_8_6')
+        CityPage.objects.get_or_create(
+            city=city, name='citypage_section_8_7')
+
+        CityPage.objects.get_or_create(city=city, name='citypage_section_9')
+
+        citypage_contact_button = CityPage.objects.get(
+            name='citypage_contact_button')
+        citypage_contact_button.contents = input_data[
+            'citypage_contact_button']
+        citypage_contact_button.save()
+
+        citypage_meta_title = CityPage.objects.get(
+            name='citypage_meta_title')
+        citypage_meta_title.contents = input_data[
+            'citypage_meta_title']
+        citypage_meta_title.save()
+
+        citypage_meta_description = CityPage.objects.get(
+            name='citypage_meta_description')
+        citypage_meta_description.contents = input_data[
+            'citypage_meta_description']
+        citypage_meta_description.save()
+
+        citypage_meta_keywords = CityPage.objects.get(
+            name='citypage_meta_keywords')
+        citypage_meta_keywords.contents = input_data[
+            'citypage_meta_keywords']
+        citypage_meta_keywords.save()
+
+        citypage_meta_schema = CityPage.objects.get(
+            name='citypage_meta_schema')
+        citypage_meta_schema.contents = input_data[
+            'citypage_meta_schema']
+        citypage_meta_schema.save()
+
+        citypage_section_1 = CityPage.objects.get(name='citypage_section_1')
+        citypage_section_1.contents = input_data['citypage_section_1']
+        citypage_section_1.save()
+
+        citypage_section_2 = CityPage.objects.get(name='citypage_section_2')
+        citypage_section_2.contents = input_data['citypage_section_2']
+        citypage_section_2.save()
+
+        citypage_section_3_1 = CityPage.objects.get(
+            name='citypage_section_3_1')
+        citypage_section_3_1.contents = input_data['citypage_section_3_1']
+        citypage_section_3_1.save()
+        citypage_section_3_2 = CityPage.objects.get(
+            name='citypage_section_3_2')
+        citypage_section_3_2.contents = input_data['citypage_section_3_2']
+        citypage_section_3_2.save()
+
+        citypage_section_4_1 = CityPage.objects.get(
+            name='citypage_section_4_1')
+        citypage_section_4_1.contents = input_data['citypage_section_4_1']
+        citypage_section_4_1.save()
+        citypage_section_4_2 = CityPage.objects.get(
+            name='citypage_section_4_2')
+        citypage_section_4_2.contents = input_data['citypage_section_4_2']
+        citypage_section_4_2.save()
+
+        citypage_section_5_1 = CityPage.objects.get(
+            name='citypage_section_5_1')
+        citypage_section_5_1.contents = input_data['citypage_section_5_1']
+        citypage_section_5_1.save()
+        citypage_section_5_2 = CityPage.objects.get(
+            name='citypage_section_5_2')
+        citypage_section_5_2.contents = input_data['citypage_section_5_2']
+        citypage_section_5_2.save()
+        citypage_section_5_3 = CityPage.objects.get(
+            name='citypage_section_5_3')
+        citypage_section_5_3.contents = input_data['citypage_section_5_3']
+        citypage_section_5_3.save()
+        citypage_section_5_4 = CityPage.objects.get(
+            name='citypage_section_5_4')
+        citypage_section_5_4.contents = input_data['citypage_section_5_4']
+        citypage_section_5_4.save()
+
+        citypage_section_6_1 = CityPage.objects.get(
+            name='citypage_section_6_1')
+        citypage_section_6_1.contents = input_data['citypage_section_6_1']
+        citypage_section_6_1.save()
+        citypage_section_6_2 = CityPage.objects.get(
+            name='citypage_section_6_2')
+        citypage_section_6_2.contents = input_data['citypage_section_6_2']
+        citypage_section_6_2.save()
+
+        citypage_section_7 = CityPage.objects.get(name='citypage_section_7')
+        citypage_section_7.contents = input_data['citypage_section_7']
+        citypage_section_7.save()
+
+        citypage_section_8_1 = CityPage.objects.get(
+            name='citypage_section_8_1')
+        citypage_section_8_1.contents = input_data['citypage_section_8_1']
+        citypage_section_8_1.save()
+        citypage_section_8_2 = CityPage.objects.get(
+            name='citypage_section_8_2')
+        citypage_section_8_2.contents = input_data['citypage_section_8_2']
+        citypage_section_8_2.save()
+        citypage_section_8_3 = CityPage.objects.get(
+            name='citypage_section_8_3')
+        citypage_section_8_3.contents = input_data['citypage_section_8_3']
+        citypage_section_8_3.save()
+        citypage_section_8_4 = CityPage.objects.get(
+            name='citypage_section_8_4')
+        citypage_section_8_4.contents = input_data['citypage_section_8_4']
+        citypage_section_8_4.save()
+        citypage_section_8_5 = CityPage.objects.get(
+            name='citypage_section_8_5')
+        citypage_section_8_5.contents = input_data['citypage_section_8_5']
+        citypage_section_8_5.save()
+        citypage_section_8_6 = CityPage.objects.get(
+            name='citypage_section_8_6')
+        citypage_section_8_6.contents = input_data['citypage_section_8_6']
+        citypage_section_8_6.save()
+        citypage_section_8_7 = CityPage.objects.get(
+            name='citypage_section_8_7')
+        citypage_section_8_7.contents = input_data['citypage_section_8_7']
+        citypage_section_8_7.save()
+
+        citypage_section_9 = CityPage.objects.get(name='citypage_section_9')
+        citypage_section_9.contents = input_data['citypage_section_9']
+        citypage_section_9.save()
+
+        messages.success(request, 'Content saved successfully.')
+        return HttpResponseRedirect(
+            '/gadadmin/citypage_content/%s' % city_name)

@@ -116,40 +116,54 @@
                     <h3> <strong> Lorem Ipsum is simply dummy text </strong></h3>
                 </div>
             </div>
+            <form action="/step_two" id="stepOne" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="car_brand_name" value="" />
+            <input type="hidden" name="car_model_name" value="" />
+            <input type="hidden" name="car_year_name" value="" />
             <div class="row">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Marke</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Alpina</option>
-                            <option>Alpina2</option>
-                            <option>Alpina3</option>
-                            <option>Alpina4</option>
-                            <option>Alpina5</option>
+                        <select class="form-control car-brand" name="car_brand"
+                            id="car-brand"
+                            onchange="getCarModels(this.value)"
+                        >
+                            <option>Select Car Brand</option>
+                            {% if car_brands %}
+                                {% for car_brand in car_brands %}
+                                    <option value="{{ car_brand.id }}">{{ car_brand.name }}</option>
+                                {% endfor %}
+                            {% endif %}
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-4">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Modell</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>Modell 1</option>
-                                <option>Modell 2</option>
-                                <option>Modell 3</option>
+                            <select class="form-control car-model"
+                                    name="car_model"
+                                    onchange="getCarYears(this)"
+                                    id="exampleFormControlSelect1"
+                                    disabled="disabled">
+                                <option>Modell auswählen</option>
                             </select>
                         </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Erstzulassung</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Erstzulassung 1</option>
-                            <option>Erstzulassung 2</option>
-                            <option>Erstzulassung 3</option>
+                        <select class="form-control car-year"
+                            id="exampleFormControlSelect1"
+                            disabled="disabled"
+                            name="car_year"
+                        >
+                            <option value="">Erstzulassung auswählen</option>
                         </select>
                     </div>
                 </div>
             </div>
+            </form>
         </div>
 
         <div class="container-fluid padding-T-15">
@@ -160,7 +174,8 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                        <button type="button" class="btn btn-primary"> Jetzt kostenlos bewerten </button>
+                    <button type="submit" class="btn btn-primary"
+                                onclick="getValidate(event)">{% if citypage_content %}{% for content in citypage_content %}{% if content.name == 'citypage_contact_button' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}</button>
                 </div>
                 <div class="col-lg-4 d-flex align-items-center">
                     <div class="imgBox">
@@ -763,17 +778,140 @@
                 items : 2,
             });
 
-        });
-
-        var map;
-        function initMap() {
-            console.log('map');
-            map = new google.maps.Map(document.getElementById('cityMap'), {
+            new google.maps.Map(document.getElementById('cityMap'), {
                 center: {lat: -34.397, lng: 150.644},
                 zoom: 8
             });
+
+        });
+
+        var map;
+        function initialize() {
+          var mapOptions = {
+            zoom: 8,
+            center: new google.maps.LatLng(-34.397, 150.644),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          map = new google.maps.Map(document.getElementById('cityMap'),
+              mapOptions);
         }
-        initMap();
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+        $(function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        });
+
+        function showPosition(position) {
+            console.log(position);
+            {#x.innerHTML = "Latitude: " + position.coords.latitude + #}
+            {#"<br>Longitude: " + position.coords.longitude;#}
+        }
+
+        {#    var car_session_data = JSON.parse(`{{ car_session_data }}`.replace(/&#39;/g,'"'));#}
+        {#console.log(car_session_data);#}
+        {##}
+        {#$("#car-model").val(car_session_data['car_model']);#}
+        {#$("#car-brand").val(car_session_data['car_brand']);#}
+        {#$("#car-year").val(car_session_data['car_year']);#}
+        var getPosition = function (options) {
+            return new Promise(function (resolve, reject) {
+                navigator.geolocation.getCurrentPosition(resolve, reject, options);
+            });
+        }
+
+        getPosition()
+        .then((position) => {
+            console.log(position);
+        })
+        .catch(async (err) => {
+            var cities = JSON.parse(`{{ cities }}`.replace(/&quot;/g,'"'));
+            var current_city_location = `{{ current_city_location }}`;
+            console.log(current_city_location);
+            if (current_city_location == 'False'){
+                var _html = '<form action="/update_location_city" method="get" id="changeLocation">';
+                _html += '<select name="city_id" id="cityInput">';
+                _html += '<option value="">Select City</option>';
+                for(i=0; i < cities.length; i++){
+                    _html += '<option value="'+cities[i].id+'">'+cities[i].name+'</option>';
+                }
+                _html += '</select>';
+                _html += '</form>';
+                const {value: formValues} = await Swal.fire({
+                    title: 'Enable to get your location!',
+                    type: 'warning',
+                    html: _html,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    preConfirm: () => {
+                        window.location.replace('/update_location_city/'+document.getElementById('cityInput').value)
+                        console.log(document.getElementById('cityInput').value);
+                    }
+                });
+            }
+        });
+
+        function getCarModels(carModelId){
+            console.log(carModelId);
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let carModelNode = $(".car-model");
+                    var carModels = JSON.parse(this.responseText).wkda;
+
+                    var _html = '<option value="">Modell auswählen</option>';
+                    $.map(carModels, function(value, index) {
+                        console.log(value, index);
+                        _html += '<option value='+index+'>'+value+'</option>';
+                    });
+                    carModelNode.html(_html);
+                    carModelNode.prop("disabled", false);
+                }
+            };
+            xhttp.open("GET", "http://142.93.166.157/getModel.php?brand_id="+carModelId, true);
+            xhttp.send();
+        }
+
+        function getCarYears(carYearId){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var carYearNode = $(".car-year");
+                    var carYears = JSON.parse(this.responseText).wkda;
+                    var _html = '<option value="">Erstzulassung auswählen</option>';
+                    $.map(carYears, function(value, index) {
+                        _html += '<option value='+index+'>'+value+'</option>';
+                    });
+                    carYearNode.html(_html);
+                    carYearNode.prop("disabled", false);
+                }
+            };
+            var carBrandId = $(".car-brand").val();
+            xhttp.open("GET", "http://142.93.166.157/getYear" +
+                ".php?brand_id="+carBrandId+"&model_id="+carYearId.value, true);
+            xhttp.send();
+        }
+
+        function getBrand() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                let carBrands = JSON.parse(this.responseText).wkda;
+                var _html = '<option>Select Car Brand</option>';
+                $.map(carBrands, function(value, index) {
+                    _html += '<option value='+index+'>'+value+'</option>';
+                });
+                $(".car-brand").html(_html);
+            }
+            xhttp.open("GET", "http://142.93.166.157/getBrand.php");
+            xhttp.send();
+        }
+
+        getBrand();
   </script>
 {% endblock %}
 {% block metaSchema %}{% if citypage_content %}{% for content in citypage_content %}{% if content.name == 'citypage_meta_schema' %}{{ content.contents }}{% endif %}{% endfor %}{% endif %}{% endblock %}

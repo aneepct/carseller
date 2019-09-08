@@ -22,4 +22,6 @@ urlpatterns = [
          name='steptwo_content'),
     path(r'stepthree_content/<slug:city_name>', views.stepthree_content,
          name='stepthree_content'),
+    path(r'citypage_content/<slug:city_name>', views.citypage_content,
+         name='citypage_content'),
 ]
